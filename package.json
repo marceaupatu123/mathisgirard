@@ -17,5 +17,8 @@
   },
   "homepage": "https://github.com/marceaupatu123/nodejsdiscordbot#readme",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "enmap": "^5.8.2"
+  }
 }

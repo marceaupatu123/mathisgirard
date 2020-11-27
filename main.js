@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const Enmap = require("enmap");
 
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -17,18 +16,18 @@ fs.readdir("./events", (err, files) => {
   });
 });
 
-client.commands = new Enmap();
+client.commands = new Discord.Collection();
 
 fs.readdir("./commands", (err, files) => {
-  // On regarde tout le dossier "commands"
+
+  let filter = files.filter(f => f.split(".").pop() == "js")
+  if (filter.length <= 0) return console.log("Aucune commande trouvé")
+
   if (err) return console.log(err); // Look at error
-  files.forEach((files) => {
-    // For each element
-    if (!files.endsWith(".js")) return; // On vérifie que c bien un .js
+  filter.forEach((files) => {
     const props = require(`./commands/${files}`); // On prend le fichier
-    const commandName = files.split(".")[0];
-    console.log(`Lancement de ${commandName}`);
-    client.commands.set(commandName, props); // On fait en sorte de pouvoir utiliser la commande
+    console.log(`Lancement de ${files}`);
+    client.commands.set(props.help.nae, props); // On fait en sorte de pouvoir utiliser la commande
   });
 });
 
