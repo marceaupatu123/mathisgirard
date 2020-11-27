@@ -27,7 +27,7 @@ fs.readdir("./commands", (err, files) => {
   filter.forEach((files) => {
     const props = require(`./commands/${files}`); // On prend le fichier
     console.log(`Lancement de ${files}`);
-    client.commands.set(props.help.nae, props); // On fait en sorte de pouvoir utiliser la commande
+    client.commands.set(props.help.name, props); // On fait en sorte de pouvoir utiliser la commande
   });
 });
 
