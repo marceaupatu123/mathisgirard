@@ -4,7 +4,7 @@
   "description": "my first discord bot",
   "main": "main.js",
   "scripts": {
-    "test": "mocha"
+    "test": "node main.js"
   },
   "author": "Dominus_Marceau",
   "license": "ISC",
@@ -16,7 +16,6 @@
     "url": "https://github.com/marceaupatu123/nodejsdiscordbot/issues"
   },
   "homepage": "https://github.com/marceaupatu123/nodejsdiscordbot#readme",
-  "devDependencies": {
-    "mocha": "^8.2.1"
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
