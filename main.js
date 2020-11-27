@@ -32,8 +32,8 @@ fs.readdir("./commands", (err, files) => {
   });
 });
 
-module.exports.checkusermods = function(user) {
+module.exports.checkusermods = function (user) {
   if (user.roles.cache.has("770657712870391810")) return true;
   else return false;
-}
+};
 client.login(config.token);

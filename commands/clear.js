@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-  const funtiontools = require("../main")
+  const funtiontools = require("../main");
   let args2 = Number(args[0]);
   if (funtiontools.checkusermods(message.member) == true) {
     if (!isNaN(args2)) {
