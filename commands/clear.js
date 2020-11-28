@@ -2,6 +2,9 @@ exports.run = (client, message, args) => {
   const funtiontools = require("../main");
   let args2 = Number(args[0]);
   if (funtiontools.checkusermods(message.member) == true) {
+    if (args2 < 100) {
+      message.send("⚠️ **Vous ne pouvez pas supprimer plus de 100 messages** ⚠️")
+    }
     if (!isNaN(args2)) {
       message.channel.bulkDelete(args2 + 1)
       message.channel
@@ -14,10 +17,10 @@ exports.run = (client, message, args) => {
           )
         );
     } else {
-      message.channel.send("⚠️ Ne mettez que des nombres ⚠️");
+      message.channel.send("⚠️ **Ne mettez que des nombres** ⚠️");
     }
   } else {
-    message.channel.send("Tu n'as pas la permission de faire ça ! :no_entry: ");
+    message.channel.send("**Tu n'as pas la permission de faire ça ! ⛔️** ");
   }
 };
 
