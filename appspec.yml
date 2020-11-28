@@ -4,8 +4,8 @@ version: 0.0
 os: windows
 #
 files:
-  - source: /
-    destination: /home/ec2-user/nodejsdiscordbot
+  - source: \
+    destination: c:\temp\nodejsdiscordbot
 hooks:
   BeforeInstall:
     - location: bin/install.bat
