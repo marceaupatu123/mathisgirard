@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
     if (!isNaN(args2)) {
       message.channel.bulkDelete(args2 + 1)
       message.channel
-        .send("Message supprimé ✅")
+        .send(```**${args2} messages** ont été supprimé(s) ✅```)
         .catch(console.error)
         .then(
           setTimeout(
