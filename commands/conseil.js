@@ -53,7 +53,7 @@ exports.run = (client, message, args) => {
     qui.send(embed);
   } else if (type == "cr") {
     if (!message.member.roles.cache.has("777185655721033760")) {
-      message.channel.send("**Tu n'as pas la permission de faire ça ⛔️**);
+      message.channel.send("**Tu n'as pas la permission de faire ça ⛔️**");
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
