@@ -31,7 +31,7 @@ fs.readdir("./commands", (err, files) => {
 });
 
 module.exports.checkusermods = function (user) {
-  if (user.roles.cache.has("770657712870391810")) return true;
+  if (user.roles.cache.has("770657712870391810") || user.roles.cache.has("779401942392373249")) return true;
   else return false;
 };
 
