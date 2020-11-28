@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
     if (!isNaN(args2)) {
       message.channel.bulkDelete(args2).catch(console.error);
       message.channel
-        .send("Message supprimé !")
+        .send("Message supprimé :tickyes:!")
         .catch(console.error)
         .then(
           setTimeout(
@@ -14,10 +14,10 @@ exports.run = (client, message, args) => {
           )
         );
     } else {
-      message.channel.send("Un problème est survenu !");
+      message.channel.send(":warning: Un problème est survenu ! :warning: ");
     }
   } else {
-    message.channel.send("Tu n'as pas la permission de faire ça !");
+    message.channel.send("Tu n'as pas la permission de faire ça ! :no_entry: ");
   }
 };
 

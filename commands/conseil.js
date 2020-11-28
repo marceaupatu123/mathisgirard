@@ -9,21 +9,21 @@ exports.run = (client, message, args) => {
 
   // Check variable
   if (!type) {
-    message.channel.send("Veuillez spécifier un type de conseil.");
+    message.channel.send(":warning: Veuillez spécifier un type de conseil :warning: ");
     return;
   } else if (qui == undefined) {
-    message.channel.send("Je ne trouve pas l'utilisateur");
+    message.channel.send(":warning: Je ne trouve pas l'utilisateur :warning: ");
     return;
   } else if (qui == false) {
-    message.channel.send("Veuillez spécifier un destinataire");
+    message.channel.send(":warning: Veuillez spécifier un destinataire :warning: ");
     return;
   } else if (!phrase) {
-    message.channel.send("Veuillez spécifier une phrase");
+    message.channel.send(":warning:  Veuillez spécifier une phrase :warning: ");
   }
 
   if (type == "cmpc") {
     if (!message.member.roles.cache.has("770665806853308426")) {
-      message.channel.send("Tu n'as pas la permission de faire ça")
+      message.channel.send("Tu n'as pas la permission de faire ça :no_entry: ")
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
@@ -38,7 +38,7 @@ exports.run = (client, message, args) => {
     qui.send(embed);
   } else if (type == "co") {
     if (!message.member.roles.cache.has("770995381038350366")) {
-      message.channel.send("Tu n'as pas la permission de faire ça")
+      message.channel.send("Tu n'as pas la permission de faire ça :no_entry: ")
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
@@ -53,7 +53,7 @@ exports.run = (client, message, args) => {
     qui.send(embed);
   } else if (type == "cr") {
     if (!message.member.roles.cache.has("777185655721033760")) {
-      message.channel.send("Tu n'as pas la permission de faire ça")
+      message.channel.send("Tu n'as pas la permission de faire ça :no_entry: ")
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
@@ -68,9 +68,10 @@ exports.run = (client, message, args) => {
     qui.send(embed);
   } else {
     message.channel.send(
-      "Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co**"
+      ":warning: Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** :warning: "
     );
   }
+  message.channel.send("Ton message a été envoyé :mailbox_with_mail: !")
   message.delete();
 };
 
