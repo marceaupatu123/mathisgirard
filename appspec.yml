@@ -8,18 +8,18 @@ files:
     destination: /home/ec2-user/nodejsdiscordbot
 hooks:
   BeforeInstall:
-    - location: bin/install.sh
+    - location: bin/install.bat
       timeout: 300
 
   ApplicationStop:
-    - location: bin/app-stop.sh
+    - location: bin/app-stop.bat
       timeout: 30
 
   AfterInstall:
-    - location: bin/install-pkgs.sh
+    - location: bin/install-pkgs.bat
       timeout: 1200
 
   ApplicationStart:
-    - location: bin/app-start.sh
+    - location: bin/app-start.bat
       timeout: 60
 
