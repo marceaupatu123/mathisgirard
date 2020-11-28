@@ -2,20 +2,19 @@ exports.run = (client, message, args) => {
   const funtiontools = require("../main");
   let args2 = Number(args[0]);
   if (funtiontools.checkusermods(message.member) == true) {
-    if (args2 < 100) {
-      message.send("⚠️ **Vous ne pouvez pas supprimer plus de 100 messages** ⚠️")
-    }
     if (!isNaN(args2)) {
-      message.channel.bulkDelete(args2 + 1)
-      message.channel
-        .send(```**${args2} messages** ont été supprimé(s) ✅```)
-        .catch(console.error)
-        .then(
-          setTimeout(
-            () => message.channel.bulkDelete(1),
-            5000
-          )
+      if (args2 > 100) {
+        message.channel.send(
+          "⚠️ **Vous ne pouvez pas supprimer plus de 100 messages** ⚠️"
         );
+        return;
+      }
+      message.channel
+        .bulkDelete(args2 + 1, true)
+        .catch(console.error);
+      message.channel
+        .send(`**${args2} messages** ont été supprimé(s) ✅`)
+        .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     } else {
       message.channel.send("⚠️ **Ne mettez que des nombres** ⚠️");
     }
