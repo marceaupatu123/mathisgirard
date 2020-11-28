@@ -71,7 +71,7 @@ exports.run = (client, message, args) => {
       "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
     );
   }
-  message.channel.send("Ton message a été envoyé ! 📬");
+  message.channel.send("Ton message a été envoyé 📬");
   message.delete();
 };
 
