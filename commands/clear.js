@@ -3,9 +3,10 @@ exports.run = (client, message, args) => {
   let args2 = Number(args[0]);
   if (funtiontools.checkusermods(message.member) == true) {
     if (!isNaN(args2)) {
+      message.delete();
       message.channel.bulkDelete(args2).catch(console.error);
       message.channel
-        .send("Message supprimé :tickyes:!")
+        .send("Message supprimé ✅")
         .catch(console.error)
         .then(
           setTimeout(
@@ -14,7 +15,7 @@ exports.run = (client, message, args) => {
           )
         );
     } else {
-      message.channel.send(":warning: Un problème est survenu ! :warning: ");
+      message.channel.send("⚠️ Un problème est survenu ⚠️");
     }
   } else {
     message.channel.send("Tu n'as pas la permission de faire ça ! :no_entry: ");
@@ -23,5 +24,5 @@ exports.run = (client, message, args) => {
 
 module.exports.help = {
   name: "clear",
-  description: "Efface le nombres de message voulu."
+  description: "Efface le nombres de message voulu.",
 };
