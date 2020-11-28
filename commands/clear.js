@@ -17,18 +17,10 @@ exports.run = (client, message, args) => {
       message.channel.send("Un problème est survenu !");
     }
   } else {
-    message.channel
-      .send("Message supprimé !")
-      .catch(console.error)
-      .then(
-        setTimeout(
-          () => message.channel.bulkDelete(1).catch(console.error),
-          5000
-        )
-      );
+    message.channel.send("Tu n'as pas la permission de faire ça !");
   }
 };
 
 module.exports.help = {
-  name: "clear"
-}
+  name: "clear",
+};

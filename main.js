@@ -19,9 +19,8 @@ fs.readdir("./events", (err, files) => {
 client.commands = new Discord.Collection();
 
 fs.readdir("./commands", (err, files) => {
-
-  let filter = files.filter(f => f.split(".").pop() == "js")
-  if (filter.length <= 0) return console.log("Aucune commande trouvé")
+  let filter = files.filter((f) => f.split(".").pop() == "js");
+  if (filter.length <= 0) return console.log("Aucune commande trouvé");
 
   if (err) return console.log(err); // Look at error
   filter.forEach((files) => {
@@ -35,4 +34,18 @@ module.exports.checkusermods = function (user) {
   if (user.roles.cache.has("770657712870391810")) return true;
   else return false;
 };
+
+module.exports.getUserFromMention = function (mention) {
+  if (!mention) return;
+
+  if (mention.startsWith("<@" && mention.endsWith(">"))) {
+    mention = mention.slice(2, -1);
+
+    if (mention.startsWith("!")) {
+      mention = mention.slice(1);
+    }
+    return client.user.cache.get(mention)
+  }
+};
+
 client.login(config.token);
