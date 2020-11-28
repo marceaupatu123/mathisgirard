@@ -22,6 +22,9 @@ exports.run = (client, message, args) => {
   }
 
   if (type == "cmpc") {
+    if (!message.member.roles.cache.has("770665806853308426")) {
+      message.channel.send("Tu n'as pas la permission de faire ça")
+    }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
       .setAuthor(
@@ -34,6 +37,9 @@ exports.run = (client, message, args) => {
       .setTimestamp();
     qui.send(embed);
   } else if (type == "co") {
+    if (!message.member.roles.cache.has("770995381038350366")) {
+      message.channel.send("Tu n'as pas la permission de faire ça")
+    }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
       .setAuthor(
@@ -46,6 +52,9 @@ exports.run = (client, message, args) => {
       .setTimestamp();
     qui.send(embed);
   } else if (type == "cr") {
+    if (!message.member.roles.cache.has("777185655721033760")) {
+      message.channel.send("Tu n'as pas la permission de faire ça")
+    }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
       .setAuthor(
