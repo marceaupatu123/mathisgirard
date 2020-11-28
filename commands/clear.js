@@ -1,8 +1,8 @@
 exports.run = (client, message, args) => {
-  message.delete();
   const funtiontools = require("../main");
   let args2 = Number(args[0]);
   if (funtiontools.checkusermods(message.member) == true) {
+    message.delete();
     if (!isNaN(args2)) {
       message.channel.bulkDelete(args2).catch(console.error);
       message.channel
