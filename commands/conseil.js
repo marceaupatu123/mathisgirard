@@ -2,7 +2,11 @@ exports.run = (client, message, args) => {
   const Discord = require("discord.js");
   const functiontools = require("../main");
   const type = args[0].toLowerCase();
+  if (args[1].startsWith("<@")) {
   const qui = functiontools.getUserFromMention(args[1]);
+  } else {
+    const qui = functiontools.getChannelFromMention(args[1]);
+  }
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author.username;
@@ -12,7 +16,7 @@ exports.run = (client, message, args) => {
     message.channel.send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ");
     return;
   } else if (qui == undefined) {
-    message.channel.send("**⚠️ Je ne trouve pas l'utilisateur ⚠️**");
+    message.channel.send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**");
     return;
   } else if (qui == false) {
     message.channel.send("**⚠️ Veuillez spécifier un destinataire ⚠️**");

@@ -48,4 +48,14 @@ module.exports.getUserFromMention = function (mention) {
   }
 };
 
+module.exports.getChannelFromMention = function (mention) {
+  if (!mention) return false;
+
+  if (mention.startsWith("<#") && mention.endsWith(">")) {
+    mention = mention.slice(2, -1);
+
+    return client.channels.cache.get(mention)
+  }
+};
+
 client.login(config.token);
