@@ -7,9 +7,9 @@ files:
   - source: \
     destination: c:\temp\nodejsdiscordbot
 hooks:
-  BeforeInstall:
-    - location: bin/install.bat
-      timeout: 300
+  # BeforeInstall:
+  #   - location: bin/install.bat
+  #     timeout: 300
 
   ApplicationStop:
     - location: bin/app-stop.bat
