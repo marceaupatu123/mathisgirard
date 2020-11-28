@@ -36,7 +36,7 @@ module.exports.checkusermods = function (user) {
 };
 
 module.exports.getUserFromMention = function (mention) {
-  if (!mention) return;
+  if (!mention) return false;
 
   if (mention.startsWith("<@") && mention.endsWith(">")) {
     mention = mention.slice(2, -1);

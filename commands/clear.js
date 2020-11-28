@@ -23,4 +23,5 @@ exports.run = (client, message, args) => {
 
 module.exports.help = {
   name: "clear",
+  description: "Efface le nombres de message voulu."
 };

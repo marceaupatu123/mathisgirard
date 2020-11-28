@@ -3,6 +3,7 @@ exports.run = (client, message) => {
 }
 
 module.exports.help = {
-    name: "ping"
+    name: "ping",
+    description: "Regarde si le bot est online"
   }
   
