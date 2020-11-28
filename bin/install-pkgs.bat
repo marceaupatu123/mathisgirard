@@ -1,4 +1,4 @@
 
-cd /home/ec2-user/discord-bot
+cd C:\Users\Administrator\Desktop\nodejsdiscordbot
 echo "installing packages"
 npm install

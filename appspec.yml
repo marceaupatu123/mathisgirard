@@ -15,9 +15,9 @@ hooks:
     - location: bin/app-stop.bat
       timeout: 30
 
-  AfterInstall:
-    - location: bin/install-pkgs.bat
-      timeout: 1200
+  # AfterInstall:
+  #   - location: bin/install-pkgs.bat
+  #     timeout: 1200
 
   ApplicationStart:
     - location: bin/app-start.bat
