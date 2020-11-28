@@ -44,7 +44,7 @@ exports.run = (client, message, args) => {
       .setTitle(`Lettre de ${author}`)
       .setAuthor(
         "Conseil Overabused",
-        "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/justice-rights-brand-logo-design-template-67ee25393ccca0209111f75188828e6d_screen.jpg"
+        "https://eacea.ec.europa.eu/sites/eacea-site/files/flag_2colors.png"
       )
       .setColor("BLACK")
       .setDescription(phrase)
@@ -59,7 +59,7 @@ exports.run = (client, message, args) => {
       .setTitle(`Lettre de ${author}`)
       .setAuthor(
         "Conseil Républicain",
-        "https://static.elysee.fr/images/default/0001/02/310d3dc879953b7e758fa4376d2366f21ee863e9.jpeg"
+        "https://static.elysee.fr/images/default/0001/02/310d3dc879953b7e758fa4376d2366f21ee863e9.jpeg?w=300&h=400&crop=723,963,266,387&s=c82faa0b6fcb53e06501cd07b77812941d89581304399030e45353ddcf0428f8"
       )
       .setColor("PURPLE")
       .setDescription(phrase)
@@ -71,7 +71,7 @@ exports.run = (client, message, args) => {
       "Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co**"
     );
   }
-  message.delete({ timeout: 5000 });
+  message.delete();
 };
 
 module.exports.help = {
