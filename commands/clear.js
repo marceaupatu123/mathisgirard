@@ -16,7 +16,7 @@ exports.run = (client, message, args) => {
         .send(`**${args2} messages** ont été supprimé(s) ✅`)
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     } else {
-      message.channel.send("⚠️ **Ne mettez que des nombres** ⚠️");
+      message.channel.send("⚠️ **Ne mettez que des nombres**");
     }
   } else {
     message.channel.send("**Tu n'as pas la permission de faire ça ! ⛔️** ");
