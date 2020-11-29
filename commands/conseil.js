@@ -12,20 +12,20 @@ exports.run = (client, message, args) => {
   const logscmpc = message.guild.channels.cache.get("777492167710212136");
   const logsco = message.guild.channels.cache.get("777493999233269790");
   const logscr = message.guild.channels.cache.get("777494538319167508");
+  const covid = client.guilds.cache.get("769252353118699600")
 
-  if (message.guild.id == "769252353118699600") {
+  if (message.guild.id == covid.id) {
     // Check variable
     if (!type) {
       message.channel
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
       return;
-    } else if (type == "cmpc" || type == "co" || type == "cr") {
+    } else if (type !== "cmpc" || type !== "co" || type !== "cr") {
       message.channel
-        .send(
-          `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${message.guild.name}** ⚠️`
-        )
+        .send("⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        return
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
@@ -115,7 +115,7 @@ exports.run = (client, message, args) => {
   } else {
     message.channel
       .send(
-        `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${message.guild.name}** ⚠️`
+        `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name}** ⚠️`
       )
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
   }
