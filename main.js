@@ -49,9 +49,13 @@ module.exports.getUserFromMention = function (mention, message = false) {
       mention = mention.slice(1);
     }
     return client.users.cache.get(mention);
-  } 
+  }
   if (message) {
-  return message.guild.members.cache.find((id) => id.user.username.toLowerCase().startsWith(mention.toLowerCase()) | id.displayName.toLowerCase().startsWith(mention.toLowerCase()));
+    return message.guild.members.cache.find(
+      (id) =>
+        id.user.username.toLowerCase().startsWith(mention.toLowerCase()) |
+        id.displayName.toLowerCase().startsWith(mention.toLowerCase())
+    );
   }
 };
 

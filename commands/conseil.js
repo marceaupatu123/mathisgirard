@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
   const qui =
     functiontools.getUserFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
-    message.mentions.members.first() 
+    message.mentions.members.first();
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author.username;
