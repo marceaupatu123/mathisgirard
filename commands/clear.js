@@ -4,9 +4,9 @@ exports.run = (client, message, args) => {
   if (message.member.hasPermission("MANAGE_MESSAGES")) {
     if (!isNaN(args2)) {
       if (args2 > 100) {
-        message.channel.send(
-          "⚠️ **Vous ne pouvez pas supprimer plus de 100 messages** ⚠️"
-        );
+        message.channel
+          .send("⚠️ **Vous ne pouvez pas supprimer plus de 100 messages** ⚠️")
+          .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
         return;
       }
       message.channel.bulkDelete(args2, true).catch(console.error);
@@ -23,7 +23,7 @@ exports.run = (client, message, args) => {
       .send("**Tu n'as pas la permission de faire ça ! ⛔️** ")
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
   }
-  message.delete()
+  message.delete();
 };
 
 module.exports.help = {

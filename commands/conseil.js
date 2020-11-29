@@ -2,7 +2,7 @@ exports.run = (client, message, args) => {
   const Discord = require("discord.js");
   const functiontools = require("../main");
   const type = args[0].toLowerCase();
-  const qui = 
+  const qui =
     functiontools.getUserFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
     message.mentions.members.first();
@@ -89,7 +89,7 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous ne pouvez pas avoir de recours", guildavatar)
         .setTimestamp();
-      qui.send(embed) 
+      qui.send(embed);
       logscr.send(`Pour ${qui} par ${author},`, { embed });
     } else {
       message.channel

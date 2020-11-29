@@ -59,11 +59,11 @@ module.exports.getUserFromMention = function (
   }
   if (message) {
     return message.guild.members.cache.find(
-      (id) => 
+      (id) =>
         id == mention ||
         id.user.username.toLowerCase().startsWith(mention.toLowerCase()) ||
-        id.displayName.toLowerCase().startsWith(mention.toLowerCase()) 
-        );
+        id.displayName.toLowerCase().startsWith(mention.toLowerCase())
+    );
   }
 };
 
