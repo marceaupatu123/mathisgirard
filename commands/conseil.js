@@ -2,12 +2,15 @@ exports.run = (client, message, args) => {
   const Discord = require("discord.js");
   const functiontools = require("../main");
   const type = args[0].toLowerCase();
-  let qui = undefined;
-  if (args[1].startsWith("<@")) {
-    qui = functiontools.getUserFromMention(args[1]);
-  } else {
-    qui = functiontools.getChannelFromMention(args[1]);
-  }
+  const qui =
+    functiontools.getUserFromMention(args[1]) ||
+    functiontools.getChannelFromMention(args[1]) ||
+    message.mentions.members.first() ||
+    message.guild.members.cache.find(
+      (id) =>
+        id.user.username.toLowerCase().startsWith(args[1].toLowerCase()) ||
+        id.displayName.toLowerCase().startsWith(args[1].toLowerCase())
+    );
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author.username;
@@ -26,7 +29,8 @@ exports.run = (client, message, args) => {
     return;
   } else if (!phrase) {
     message.channel.send("**⚠️  Veuillez spécifier une phrase ⚠️**");
-  }
+    return;
+  };
 
   if (type == "cmpc") {
     if (!message.member.roles.cache.has("770665806853308426")) {
