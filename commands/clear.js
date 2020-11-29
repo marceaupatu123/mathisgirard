@@ -9,18 +9,21 @@ exports.run = (client, message, args) => {
         );
         return;
       }
-      message.channel
-        .bulkDelete(args2 + 1, true)
-        .catch(console.error);
+      message.channel.bulkDelete(args2, true).catch(console.error);
       message.channel
         .send(`**${args2} messages** ont été supprimé(s) ✅`)
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     } else {
-      message.channel.send("⚠️ **Ne mettez que des nombres ⚠️**");
+      message.channel
+        .send("⚠️ **Ne mettez que des nombres ⚠️**")
+        .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     }
   } else {
-    message.channel.send("**Tu n'as pas la permission de faire ça ! ⛔️** ");
+    message.channel
+      .send("**Tu n'as pas la permission de faire ça ! ⛔️** ")
+      .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
   }
+  message.delete()
 };
 
 module.exports.help = {
