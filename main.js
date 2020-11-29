@@ -39,10 +39,14 @@ module.exports.checkusermods = function (user) {
   else return false;
 };
 
-module.exports.getUserFromMention = function (mention, message = false, all = false) {
+module.exports.getUserFromMention = function (
+  mention,
+  message = false,
+  all = false
+) {
   if (!mention) return false;
   if (all) {
-    return message.mentions.members
+    return message.mentions.members;
   }
 
   if (mention.startsWith("<@") && mention.endsWith(">")) {
@@ -56,10 +60,10 @@ module.exports.getUserFromMention = function (mention, message = false, all = fa
   if (message) {
     return message.guild.members.cache.find(
       (id) =>
+        id ||
         id.user.username.toLowerCase().startsWith(mention.toLowerCase()) ||
-        id.displayName.toLowerCase().startsWith(mention.toLowerCase()) ||
-        id
-    );
+        id.displayName.toLowerCase().startsWith(mention.toLowerCase()) 
+        );
   }
 };
 
