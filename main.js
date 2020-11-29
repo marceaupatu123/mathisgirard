@@ -56,8 +56,9 @@ module.exports.getUserFromMention = function (mention, message = false, all = fa
   if (message) {
     return message.guild.members.cache.find(
       (id) =>
-        id.user.username.toLowerCase().startsWith(mention.toLowerCase()) |
-        id.displayName.toLowerCase().startsWith(mention.toLowerCase())
+        id.user.username.toLowerCase().startsWith(mention.toLowerCase()) ||
+        id.displayName.toLowerCase().startsWith(mention.toLowerCase()) ||
+        id
     );
   }
 };
