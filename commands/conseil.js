@@ -3,38 +3,41 @@ exports.run = (client, message, args) => {
   const functiontools = require("../main");
   const type = args[0].toLowerCase();
   const qui =
-    functiontools.getUserFromMention(args[1]) ||
+    functiontools.getUserFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
-    message.mentions.members.first() ||
-    message.guild.members.cache.find(
-      (id) =>
-        id.user.username.toLowerCase().startsWith(args[1].toLowerCase()) ||
-        id.displayName.toLowerCase().startsWith(args[1].toLowerCase())
-    );
+    message.mentions.members.first() 
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author.username;
 
   // Check variable
   if (!type) {
-    message.channel.send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ");
+    message.channel
+      .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
+      .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     return;
   } else if (qui == undefined) {
-    message.channel.send(
-      "**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**"
-    );
+    message.channel
+      .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
+      .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     return;
   } else if (qui == false) {
-    message.channel.send("**⚠️ Veuillez spécifier un destinataire ⚠️**");
+    message.channel
+      .send("**⚠️ Veuillez spécifier un destinataire ⚠️**")
+      .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     return;
   } else if (!phrase) {
-    message.channel.send("**⚠️  Veuillez spécifier une phrase ⚠️**");
+    message.channel
+      .send("**⚠️  Veuillez spécifier une phrase ⚠️**")
+      .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     return;
-  };
+  }
 
   if (type == "cmpc") {
     if (!message.member.roles.cache.has("770665806853308426")) {
-      message.channel.send("**Tu n'as pas la permission de faire ça** ⛔️ ");
+      message.channel
+        .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
+        .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
@@ -49,7 +52,9 @@ exports.run = (client, message, args) => {
     qui.send(embed);
   } else if (type == "co") {
     if (!message.member.roles.cache.has("770995381038350366")) {
-      message.channel.send("**Tu n'as pas la permission de faire ça ⛔️**");
+      message.channel
+        .send("**Tu n'as pas la permission de faire ça ⛔️**")
+        .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
@@ -64,7 +69,9 @@ exports.run = (client, message, args) => {
     qui.send(embed);
   } else if (type == "cr") {
     if (!message.member.roles.cache.has("777185655721033760")) {
-      message.channel.send("**Tu n'as pas la permission de faire ça ⛔️**");
+      message.channel
+        .send("**Tu n'as pas la permission de faire ça ⛔️**")
+        .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     }
     const embed = new Discord.MessageEmbed()
       .setTitle(`Lettre de ${author}`)
@@ -78,11 +85,16 @@ exports.run = (client, message, args) => {
       .setTimestamp();
     qui.send(embed);
   } else {
-    message.channel.send(
-      "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
-    );
+    message.channel
+      .send(
+        "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
+      )
+      .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
   }
-  message.channel.send("Ton message a été envoyé 📬");
+  message.channel
+    .send("Ton message a été envoyé 📬")
+    .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+
   message.delete();
 };
 

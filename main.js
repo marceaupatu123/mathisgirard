@@ -31,11 +31,15 @@ fs.readdir("./commands", (err, files) => {
 });
 
 module.exports.checkusermods = function (user) {
-  if (user.roles.cache.has("770657712870391810") || user.roles.cache.has("779401942392373249")) return true;
+  if (
+    user.roles.cache.has("770657712870391810") ||
+    user.roles.cache.has("779401942392373249")
+  )
+    return true;
   else return false;
 };
 
-module.exports.getUserFromMention = function (mention) {
+module.exports.getUserFromMention = function (mention, message = false) {
   if (!mention) return false;
 
   if (mention.startsWith("<@") && mention.endsWith(">")) {
@@ -44,7 +48,10 @@ module.exports.getUserFromMention = function (mention) {
     if (mention.startsWith("!")) {
       mention = mention.slice(1);
     }
-    return client.users.cache.get(mention)
+    return client.users.cache.get(mention);
+  } 
+  if (message) {
+  return message.guild.members.cache.find((id) => id.user.username.toLowerCase().startsWith(mention.toLowerCase()) | id.displayName.toLowerCase().startsWith(mention.toLowerCase()));
   }
 };
 
@@ -54,7 +61,7 @@ module.exports.getChannelFromMention = function (mention) {
   if (mention.startsWith("<#") && mention.endsWith(">")) {
     mention = mention.slice(2, -1);
 
-    return client.channels.cache.get(mention)
+    return client.channels.cache.get(mention);
   }
 };
 
