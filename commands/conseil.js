@@ -42,6 +42,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        return;
       }
       const embed = new Discord.MessageEmbed()
         .setTitle(`Lettre de ${author.username}`)
@@ -60,6 +61,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        return;
       }
       const embed = new Discord.MessageEmbed()
         .setTitle(`Lettre de ${author.username}`)
@@ -78,6 +80,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        return;
       }
       const embed = new Discord.MessageEmbed()
         .setTitle(`Lettre de ${author.username}`)
