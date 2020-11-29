@@ -9,6 +9,9 @@ exports.run = (client, message, args) => {
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author.username;
+  const logscmpc = message.guild.channels.cache.find("777492167710212136")
+  const logsco = message.guild.channels.cache.find("777493999233269790")
+  const logscr = message.guild.channels.cache.find("777494538319167508")
 
   if (message.guild.id == 769252353118699600) {
     // Check variable
@@ -41,7 +44,7 @@ exports.run = (client, message, args) => {
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
       }
       const embed = new Discord.MessageEmbed()
-        .setTitle(`Lettre de ${author}`)
+        .setTitle(`Lettre de ${author} pour ${qui}`)
         .setAuthor(
           "Cour de Modération Pénal et Civique",
           "https://dzcharikati.net/wp-content/uploads/2019/08/scales-of-justice-logo.jpg"
@@ -51,6 +54,7 @@ exports.run = (client, message, args) => {
         .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
         .setTimestamp();
       qui.send(embed);
+      logscmpc.send(embed);
     } else if (type == "co") {
       if (!message.member.roles.cache.has("770995381038350366")) {
         message.channel
@@ -58,7 +62,7 @@ exports.run = (client, message, args) => {
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
       }
       const embed = new Discord.MessageEmbed()
-        .setTitle(`Lettre de ${author}`)
+        .setTitle(`Lettre de ${author} pour ${qui}`)
         .setAuthor(
           "Conseil Overabused",
           "https://eacea.ec.europa.eu/sites/eacea-site/files/flag_2colors.png"
@@ -68,6 +72,7 @@ exports.run = (client, message, args) => {
         .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
         .setTimestamp();
       qui.send(embed);
+      logsco.send(embed);
     } else if (type == "cr") {
       if (!message.member.roles.cache.has("777185655721033760")) {
         message.channel
@@ -75,7 +80,7 @@ exports.run = (client, message, args) => {
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
       }
       const embed = new Discord.MessageEmbed()
-        .setTitle(`Lettre de ${author}`)
+        .setTitle(`Lettre de ${author} pour ${qui}`)
         .setAuthor(
           "Conseil Républicain",
           "https://static.elysee.fr/images/default/0001/02/310d3dc879953b7e758fa4376d2366f21ee863e9.jpeg?w=300&h=400&crop=723,963,266,387&s=c82faa0b6fcb53e06501cd07b77812941d89581304399030e45353ddcf0428f8"
@@ -85,6 +90,7 @@ exports.run = (client, message, args) => {
         .setFooter("Vous ne pouvez pas avoir de recours", guildavatar)
         .setTimestamp();
       qui.send(embed);
+      logscr.send(embed);
     } else {
       message.channel
         .send(
