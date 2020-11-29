@@ -1,7 +1,7 @@
 exports.run = (client, message, args) => {
   const funtiontools = require("../main");
   let args2 = Number(args[0]);
-  if (funtiontools.checkusermods(message.member) == true) {
+  if (message.member.hasPermission("MANAGE_MESSAGES")) {
     if (!isNaN(args2)) {
       if (args2 > 100) {
         message.channel.send(
