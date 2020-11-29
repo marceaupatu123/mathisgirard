@@ -20,6 +20,12 @@ exports.run = (client, message, args) => {
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
       return;
+    } else if (type == "cmpc" || type == "co" || type == "cr") {
+      message.channel
+        .send(
+          `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${message.guild.name}** ⚠️`
+        )
+        .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
