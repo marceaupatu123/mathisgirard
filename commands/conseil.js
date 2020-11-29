@@ -9,9 +9,9 @@ exports.run = (client, message, args) => {
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author.username;
-  const logscmpc = message.guild.channels.cache.find("777492167710212136")
-  const logsco = message.guild.channels.cache.find("777493999233269790")
-  const logscr = message.guild.channels.cache.find("777494538319167508")
+  const logscmpc = message.guild.channels.cache.find("777492167710212136");
+  const logsco = message.guild.channels.cache.find("777493999233269790");
+  const logscr = message.guild.channels.cache.find("777494538319167508");
 
   if (message.guild.id == 769252353118699600) {
     // Check variable
@@ -110,8 +110,8 @@ exports.run = (client, message, args) => {
       )
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
   }
-  module.exports.help = {
-    name: "conseil",
-    description: "",
-  };
+};
+module.exports.help = {
+  name: "conseil",
+  description: "",
 };
