@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-    message.reply(`🏓La latence est de ${Date.now() - message.createdTimestamp}ms. La Latence de l'API est de ${Math.round(client.ws.ping)}ms`)
+    message.channel.send(`🏓La latence est de ${Date.now() - message.createdTimestamp}ms.\n🏓La Latence de l'API est de ${Math.round(client.ws.ping)}ms`)
 }
 
 module.exports.help = {
