@@ -3,7 +3,7 @@ exports.run = (client, message, args) => {
   const functiontools = require("../main");
   const type = args[0].toLowerCase();
   const qui =
-    functiontools.getUserFromMention(args[1], message) ||
+    functiontools.getMoreUsersFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
     message.mentions.members.first();
   const phrase = args.slice(2).join(" ");
@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
   const logscmpc = message.guild.channels.cache.get("777492167710212136");
   const logsco = message.guild.channels.cache.get("777493999233269790");
   const logscr = message.guild.channels.cache.get("777494538319167508");
-  const covid = client.guilds.cache.get("769252353118699600")
+  const covid = client.guilds.cache.get("769252353118699600");
 
   if (message.guild.id == covid.id) {
     // Check variable
@@ -21,11 +21,13 @@ exports.run = (client, message, args) => {
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
       return;
-    } else if (type !== "cmpc" || type !== "co" || type !== "cr") {
+    } else if (type != "cmpc" && type != "co" && type != "cr") {
       message.channel
-        .send("⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ ")
+        .send(
+          "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
+        )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        return
+      return;
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
@@ -60,8 +62,15 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
         .setTimestamp();
-      qui.send(embed);
-      logscmpc.send(`Pour ${qui} par ${author},`, { embed });
+        if(Array.isArray(qui) == true) {
+          qui.forEach(element => {
+           element.send(embed)
+          });
+          logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+       } else {
+         qui.send(embed)
+         logsco.send(`Pour ${qui} par ${author},`, { embed });
+       }
     } else if (type == "co") {
       if (!message.member.roles.cache.has("770995381038350366")) {
         message.channel
@@ -79,8 +88,15 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
         .setTimestamp();
-      qui.send(embed);
-      logsco.send(`Pour ${qui} par ${author},`, { embed });
+        if(Array.isArray(qui) == true) {
+           qui.forEach(element => {
+            element.send(embed)
+           });
+           logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+        } else {
+          qui.send(embed)
+          logsco.send(`Pour ${qui} par ${author},`, { embed });
+        }
     } else if (type == "cr") {
       if (!message.member.roles.cache.has("777185655721033760")) {
         message.channel
@@ -98,8 +114,15 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous ne pouvez pas avoir de recours", guildavatar)
         .setTimestamp();
-      qui.send(embed);
-      logscr.send(`Pour ${qui} par ${author},`, { embed });
+        if(Array.isArray(qui) == true) {
+          qui.forEach(element => {
+           element.send(embed)
+          });
+          logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+       } else {
+         qui.send(embed)
+         logsco.send(`Pour ${qui} par ${author},`, { embed });
+       }
     } else {
       message.channel
         .send(

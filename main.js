@@ -67,6 +67,19 @@ module.exports.getUserFromMention = function (
   }
 };
 
+module.exports.getMoreUsersFromMention = function (mention, message) {
+  if (mention.includes(",")) {
+    mention = mention.split(",");
+    const array = [];
+    mention.forEach(element => {
+      if (this.getUserFromMention(element,message) != undefined)
+      array.push(this.getUserFromMention(element, message))
+    });
+    return array
+  } else {
+    return this.getUserFromMention(mention, message)
+  }
+};
 module.exports.getChannelFromMention = function (mention) {
   if (!mention) return false;
 
