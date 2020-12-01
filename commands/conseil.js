@@ -51,7 +51,7 @@ exports.run = (client, message, args) => {
     }
 
     if (type == "cmpc") {
-      if (!message.member.roles.cache.has("770665806853308426") && !message.member.roles.cache.has(783380622583529523)) {
+      if (!message.member.roles.cache.has("770665806853308426")) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
@@ -105,7 +105,7 @@ exports.run = (client, message, args) => {
           logsco.send(`Pour ${qui} par ${author},`, { embed });
         }
     } else if (type == "cr") {
-      if (!message.member.roles.cache.has("777185655721033760")) {
+      if (!message.member.roles.cache.has("777185655721033760") && !message.member.roles.cache.has(783380622583529523)) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
