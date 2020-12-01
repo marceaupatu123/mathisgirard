@@ -20,6 +20,7 @@ exports.run = (client, message, args) => {
       message.channel
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        message.delete();
       return;
     } else if (type != "cmpc" && type != "co" && type != "cr") {
       message.channel
@@ -27,21 +28,25 @@ exports.run = (client, message, args) => {
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        message.delete();
       return;
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        message.delete();
       return;
     } else if (qui == false) {
       message.channel
         .send("**⚠️ Veuillez spécifier un destinataire ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        message.delete();
       return;
     } else if (!phrase) {
       message.channel
         .send("**⚠️  Veuillez spécifier une phrase ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        message.delete();
       return;
     }
 
@@ -50,6 +55,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+          message.delete();
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -66,16 +72,17 @@ exports.run = (client, message, args) => {
           qui.forEach(element => {
            element.send(embed)
           });
-          logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+          logscmpc.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
        } else {
          qui.send(embed)
-         logsco.send(`Pour ${qui} par ${author},`, { embed });
+         logscmpc.send(`Pour ${qui} par ${author},`, { embed });
        }
     } else if (type == "co") {
       if (!message.member.roles.cache.has("770995381038350366")) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+          message.delete();
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -102,6 +109,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+          message.delete();
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -118,10 +126,10 @@ exports.run = (client, message, args) => {
           qui.forEach(element => {
            element.send(embed)
           });
-          logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+          logscr.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
        } else {
          qui.send(embed)
-         logsco.send(`Pour ${qui} par ${author},`, { embed });
+         logscr.send(`Pour ${qui} par ${author},`, { embed });
        }
     } else {
       message.channel
@@ -129,6 +137,7 @@ exports.run = (client, message, args) => {
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+        message.delete();
     }
     message.channel
       .send("Ton message a été envoyé 📬")
@@ -141,6 +150,7 @@ exports.run = (client, message, args) => {
         `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name}** ⚠️`
       )
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
+      message.delete();
   }
 };
 module.exports.help = {
