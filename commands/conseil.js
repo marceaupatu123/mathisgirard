@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
       message.channel
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete({ timeout: 300 });
+      message.delete({ timeout: 300 });
       return;
     } else if (type != "cmpc" && type != "co" && type != "cr") {
       message.channel
@@ -28,25 +28,25 @@ exports.run = (client, message, args) => {
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete({ timeout: 300 });
+      message.delete({ timeout: 300 });
       return;
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete({ timeout: 300 });
+      message.delete({ timeout: 300 });
       return;
     } else if (qui == false) {
       message.channel
         .send("**⚠️ Veuillez spécifier un destinataire ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete({ timeout: 300 });
+      message.delete({ timeout: 300 });
       return;
     } else if (!phrase) {
       message.channel
         .send("**⚠️  Veuillez spécifier une phrase ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete({ timeout: 300 });
+      message.delete({ timeout: 300 });
       return;
     }
 
@@ -55,7 +55,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-          message.delete({ timeout: 300 });
+        message.delete({ timeout: 300 });
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -68,21 +68,21 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
         .setTimestamp();
-        if(Array.isArray(qui) == true) {
-          qui.forEach(element => {
-           element.send(embed)
-          });
-          logscmpc.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
-       } else {
-         qui.send(embed)
-         logscmpc.send(`Pour ${qui} par ${author},`, { embed });
-       }
+      if (Array.isArray(qui) == true) {
+        qui.forEach((element) => {
+          element.send(embed);
+        });
+        logscmpc.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+      } else {
+        qui.send(embed);
+        logscmpc.send(`Pour ${qui} par ${author},`, { embed });
+      }
     } else if (type == "co") {
       if (!message.member.roles.cache.has("770995381038350366")) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-          message.delete({ timeout: 300 });
+        message.delete({ timeout: 300 });
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -95,21 +95,24 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
         .setTimestamp();
-        if(Array.isArray(qui) == true) {
-           qui.forEach(element => {
-            element.send(embed)
-           });
-           logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
-        } else {
-          qui.send(embed)
-          logsco.send(`Pour ${qui} par ${author},`, { embed });
-        }
+      if (Array.isArray(qui) == true) {
+        qui.forEach((element) => {
+          element.send(embed);
+        });
+        logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+      } else {
+        qui.send(embed);
+        logsco.send(`Pour ${qui} par ${author},`, { embed });
+      }
     } else if (type == "cr") {
-      if (!message.member.roles.cache.has("777185655721033760") && !message.member.roles.cache.has(783380622583529523)) {
+      if (
+        !message.member.roles.cache.has("777185655721033760") &&
+        !message.member.roles.cache.has(783380622583529523)
+      ) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-          message.delete({ timeout: 300 });
+        message.delete({ timeout: 300 });
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -122,22 +125,22 @@ exports.run = (client, message, args) => {
         .setDescription(phrase)
         .setFooter("Vous ne pouvez pas avoir de recours", guildavatar)
         .setTimestamp();
-        if(Array.isArray(qui) == true) {
-          qui.forEach(element => {
-           element.send(embed)
-          });
-          logscr.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
-       } else {
-         qui.send(embed)
-         logscr.send(`Pour ${qui} par ${author},`, { embed });
-       }
+      if (Array.isArray(qui) == true) {
+        qui.forEach((element) => {
+          element.send(embed);
+        });
+        logscr.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
+      } else {
+        qui.send(embed);
+        logscr.send(`Pour ${qui} par ${author},`, { embed });
+      }
     } else {
       message.channel
         .send(
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete({ timeout: 300 });
+      message.delete({ timeout: 300 });
     }
     message.channel
       .send("Ton message a été envoyé 📬")
@@ -150,7 +153,7 @@ exports.run = (client, message, args) => {
         `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name}** ⚠️`
       )
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-      message.delete({ timeout: 300 });
+    message.delete({ timeout: 300 });
   }
 };
 module.exports.help = {

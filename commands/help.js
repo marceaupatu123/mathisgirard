@@ -2,7 +2,6 @@ exports.run = (client, message) => {
   const utile = [];
   const Discord = require("discord.js");
 
-
   const embed = new Discord.MessageEmbed()
     .setTitle(`Commande ${message.author.username}`)
     .setAuthor(
@@ -11,20 +10,30 @@ exports.run = (client, message) => {
     )
     .setColor("RANDOM")
     .addFields(
-      { name: 'Modération', 
-      value: '`Clear` : Permet de supprimer un montant donné de messages.',
-      inline: true},
-      { name: 'Utile', 
-      value: '`Ping` : Permet de connaitre la latence du bot.',
-      inline: true},
-      { name: 'Serveur Coronavirus', 
-      value: '`Conseil` : **[COMPATIBLE MENTION+]** Permet de faire un mesage à envoyer à une personne ou un channel en tant que membre d\'un conseil.',
+      {
+        name: "Modération",
+        value: "`Clear` : Permet de supprimer un montant donné de messages.",
+        inline: true,
       },
+      {
+        name: "Utile",
+        value: "`Ping` : Permet de connaitre la latence du bot.",
+        inline: true,
+      },
+      {
+        name: "Serveur Coronavirus",
+        value:
+          "`Conseil` : **[COMPATIBLE MENTION+]** Permet de faire un mesage à envoyer à une personne ou un channel en tant que membre d'un conseil.",
+      }
     )
-    
-    .setFooter("Bot créé par Dominus_Marceau#8457", client.users.cache.get("284036155928870912").avatarURL({"format": 'png'}))
+
+    .setFooter(
+      "Bot créé par Dominus_Marceau#8457",
+      client.users.cache.get("284036155928870912").avatarURL({ format: "png" })
+    )
     .setTimestamp();
   message.channel.send(embed);
+  message.delete({ timeout: 300 });
 };
 
 module.exports.help = {
