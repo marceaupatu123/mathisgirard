@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
       message.channel
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete();
+        message.delete({ timeout: 300 });
       return;
     } else if (type != "cmpc" && type != "co" && type != "cr") {
       message.channel
@@ -28,25 +28,25 @@ exports.run = (client, message, args) => {
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete();
+        message.delete({ timeout: 300 });
       return;
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete();
+        message.delete({ timeout: 300 });
       return;
     } else if (qui == false) {
       message.channel
         .send("**⚠️ Veuillez spécifier un destinataire ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete();
+        message.delete({ timeout: 300 });
       return;
     } else if (!phrase) {
       message.channel
         .send("**⚠️  Veuillez spécifier une phrase ⚠️**")
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete();
+        message.delete({ timeout: 300 });
       return;
     }
 
@@ -55,7 +55,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-          message.delete();
+          message.delete({ timeout: 300 });
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -82,7 +82,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-          message.delete();
+          message.delete({ timeout: 300 });
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -109,7 +109,7 @@ exports.run = (client, message, args) => {
         message.channel
           .send("**Tu n'as pas la permission de faire ça ⛔️**")
           .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-          message.delete();
+          message.delete({ timeout: 300 });
         return;
       }
       const embed = new Discord.MessageEmbed()
@@ -137,20 +137,20 @@ exports.run = (client, message, args) => {
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-        message.delete();
+        message.delete({ timeout: 300 });
     }
     message.channel
       .send("Ton message a été envoyé 📬")
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
 
-    message.delete();
+    message.delete({ timeout: 300 });
   } else {
     message.channel
       .send(
         `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name}** ⚠️`
       )
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
-      message.delete();
+      message.delete({ timeout: 300 });
   }
 };
 module.exports.help = {

@@ -23,7 +23,7 @@ exports.run = (client, message, args) => {
       .send("**Tu n'as pas la permission de faire ça ! ⛔️** ")
       .then(setTimeout(() => message.channel.bulkDelete(1), 5000));
   }
-  message.delete();
+  message.delete({ timeout: 300 });
 };
 
 module.exports.help = {
