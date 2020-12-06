@@ -1,4 +1,11 @@
 exports.run = (client, message, args) => {
+  if (message.channel.type == "dm")
+    return message.channel
+      .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
+      .then((msg) => {
+        message.delete({ timeout: 300 });
+        msg.delete({ timeout: 5000 });
+      });
   if (!args[0] && !args[1])
     return message.channel
       .send(
@@ -30,9 +37,9 @@ exports.run = (client, message, args) => {
       message.channel
         .send("**⚠️ Veuillez spécifier un type de conseil ⚠️** ")
         .then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
       return;
     } else if (type != "cmpc" && type != "co" && type != "cr") {
       message.channel
@@ -40,33 +47,33 @@ exports.run = (client, message, args) => {
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
       return;
     } else if (qui == undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
         .then((msg) => {
-        message.delete({ timeout: 300 });
-        msg.delete({ timeout: 5000 });
-      });
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
       return;
     } else if (qui == false) {
       message.channel
         .send("**⚠️ Veuillez spécifier un destinataire ⚠️**")
         .then((msg) => {
-        message.delete({ timeout: 300 });
-        msg.delete({ timeout: 5000 });
-      });
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
       return;
     } else if (!phrase) {
       message.channel
         .send("**⚠️  Veuillez spécifier une phrase ⚠️**")
         .then((msg) => {
-        message.delete({ timeout: 300 });
-        msg.delete({ timeout: 5000 });
-      });
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
       return;
     }
 
@@ -161,23 +168,21 @@ exports.run = (client, message, args) => {
         logscr.send(`Pour ${qui} par ${author},`, { embed });
       }
     } else {
-      message.channel
+      return message.channel
         .send(
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
         )
         .then((msg) => {
-        message.delete({ timeout: 300 });
-        msg.delete({ timeout: 5000 });
-      });
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
     }
-    message.channel
-      .send("Ton message a été envoyé 📬")
-      .then((msg) => {
-        message.delete({ timeout: 300 });
-        msg.delete({ timeout: 5000 });
-      });
+    message.channel.send("Ton message a été envoyé 📬").then((msg) => {
+      message.delete({ timeout: 300 });
+      msg.delete({ timeout: 5000 });
+    });
   } else {
-    message.channel
+    return message.channel
       .send(
         `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name}** ⚠️`
       )

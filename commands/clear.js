@@ -2,9 +2,7 @@ exports.run = (client, message, args) => {
   const funtiontools = require("../main");
   if (!args[0])
     return message.channel
-      .send(
-        "**⚠️ Vérifier votre commande `clear [nombre de messages]` ⚠️** "
-      )
+      .send("**⚠️ Vérifier votre commande `clear [nombre de messages]` ⚠️** ")
       .then((msg) => {
         message.delete({ timeout: 300 });
         msg.delete({ timeout: 5000 });
