@@ -13,11 +13,9 @@ exports.run = (client, message, args) => {
         msg.delete({ timeout: 5000 });
       });
 const phrase = args.slice(0).join(" ");
-const tocheck = JSON.parse(
-  fs.readFileSync("./json/report.json", "utf-8")
-)
+const tocheck = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"))
  // check if exist 
- if (!tocheck.hasOwnProperty([message.guild.id].reportchan))
+ if (!tocheck[message.guild])
  return message.channel
    .send(
      "**⚠️ Veuillez setup le salon reports avec la commande `setup report [channel]`⚠️** "
