@@ -18,7 +18,7 @@ const tocheck = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"))
  if (!tocheck[message.guild.id])
  return message.channel
    .send(
-     "**⚠️ Veuillez setup le salon reports avec la commande `setup report [channel]`⚠️** "
+     "**⚠️ Veuillez demander à un modérateur de setup le salon reports avec la commande `setup report [channel]`⚠️** "
    )
    .then((msg) => {
      message.delete({ timeout: 300 });

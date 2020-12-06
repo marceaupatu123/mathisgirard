@@ -27,7 +27,7 @@ exports.run = (client, message, args) => {
   // Check Permission
   if (!message.member.hasPermission("MANAGE_GUILD"))
     return message.channel
-      .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
+      .send("**Tu n'as pas la permission de faire ça** *(MANAGE_GUILD)*⛔️ ")
       .then((msg) => {
         message.delete({ timeout: 300 });
         msg.delete({ timeout: 5000 });

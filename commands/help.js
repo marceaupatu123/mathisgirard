@@ -12,17 +12,17 @@ exports.run = (client, message) => {
     .addFields(
       {
         name: "Modération",
-        value: "`Clear` : Permet de supprimer un montant donné de messages. (MANAGE_MESSAGES PERM)",
+        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*",
         inline: true,
       },
       {
         name: "Utile",
-        value: "`Ping` : Permet de connaitre la latence du bot.\n`Report`: Permet de report un joueur à la moderation.",
+        value: "`Ping` : Permet de connaitre la latence du bot.\n`Report`: Permet de report un problèle à la moderation.",
         inline: true,
       },
       {
         name: "Administration",
-        value: "`Ping` : Permet de connaitre la latence du bot.\n`Setup` : Permet de setup le serveur pour le bot. (MANAGE_GUILD PERM)",
+        value: "`Setup` : Permet de setup le serveur pour le bot. *(MANAGE_GUILD PERM)*",
         inline: true,
       },
       {
