@@ -37,9 +37,11 @@ exports.run = (client, message) => {
       client.users.cache.get("284036155928870912").avatarURL({ format: "png" })
     )
     .setTimestamp();
-  message.channel.send(embed);
-  message.delete({ timeout: 300 });
-};
+  message.channel.send(embed).then((msg) => {
+    message.delete({ timeout: 300 });
+    msg.delete({ timeout: 10000 });
+  })
+  };
 
 module.exports.help = {
   name: "help",
