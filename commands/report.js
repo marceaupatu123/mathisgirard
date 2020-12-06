@@ -20,7 +20,7 @@ const tocheck = JSON.parse(
  if (!tocheck.hasOwnProperty([message.guild.id].reportchan))
  return message.channel
    .send(
-     "**⚠️ Veuillez setup le salon reports avec la commande `setup reports [channel]`⚠️** "
+     "**⚠️ Veuillez setup le salon reports avec la commande `setup report [channel]`⚠️** "
    )
    .then((msg) => {
      message.delete({ timeout: 300 });
