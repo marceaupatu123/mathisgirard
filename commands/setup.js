@@ -62,7 +62,10 @@ exports.run = (client, message, args) => {
     );
     
     reportstest = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"));
-    return message.channel.send(`Setup fait avec succès ! ${reportchan[message.guild.id].reportchan}`);
+    return message.channel.send("**Setup fait avec succès ✅** ").then((msg) => {
+      message.delete({ timeout: 300 });
+      msg.delete({ timeout: 5000 });
+    });
   }
 };
 module.exports.help = {

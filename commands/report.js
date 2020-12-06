@@ -38,7 +38,7 @@ const guildavatar = message.guild.iconURL({ format: "png" });
       });
   // Make embed
     const embed = new Discord.MessageEmbed()
-      .setTitle(`Report de de ${message.author.username}`)
+      .setTitle(`Report de de ${message.author.tag}`)
       .setAuthor(
         message.author.username,
         message.author.avatarURL({ format: "png" })
@@ -48,6 +48,11 @@ const guildavatar = message.guild.iconURL({ format: "png" });
       .setFooter("Tout report abusif sera sanctionnée", guildavatar)
       .setTimestamp();
       reportschannel.send(embed)
+      return message.channel.send("**Votre plainte à été envoyé avec succès ✅** ").then((msg) => {
+        message.delete({ timeout: 300 });
+        msg.delete({ timeout: 5000 });
+      });
+    
 
     
 
