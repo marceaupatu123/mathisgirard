@@ -15,7 +15,7 @@ exports.run = (client, message, args) => {
 const phrase = args.slice(0).join(" ");
 const tocheck = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"))
  // check if exist 
- if (!tocheck[message.guild])
+ if (!tocheck[message.guild.id])
  return message.channel
    .send(
      "**⚠️ Veuillez setup le salon reports avec la commande `setup report [channel]`⚠️** "
