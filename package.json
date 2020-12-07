@@ -19,6 +19,7 @@
   "devDependencies": {},
   "dependencies": {
     "discord.js": "^12.5.1",
-    "enmap": "^5.8.2"
+    "enmap": "^5.8.2",
+    "mongoose": "^5.11.4"
   }
 }
