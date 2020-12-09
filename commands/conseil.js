@@ -22,6 +22,7 @@ exports.run = (client, message, args) => {
   const qui =
     functiontools.getMoreUsersFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
+    functiontools.getmembersbyroles(args[1], message) ||
     message.mentions.members.first();
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });

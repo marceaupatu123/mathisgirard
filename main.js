@@ -72,13 +72,13 @@ module.exports.getMoreUsersFromMention = function (mention, message) {
   if (mention.includes(",")) {
     mention = mention.split(",");
     const array = [];
-    mention.forEach(element => {
-      if (this.getUserFromMention(element,message) != undefined)
-      array.push(this.getUserFromMention(element, message))
+    mention.forEach((element) => {
+      if (this.getUserFromMention(element, message) != undefined)
+        array.push(this.getUserFromMention(element, message));
     });
-    return array
+    return array;
   } else {
-    return this.getUserFromMention(mention, message)
+    return this.getUserFromMention(mention, message);
   }
 };
 module.exports.getChannelFromMention = function (mention) {
@@ -88,6 +88,22 @@ module.exports.getChannelFromMention = function (mention) {
     mention = mention.slice(2, -1);
 
     return client.channels.cache.get(mention);
+  }
+};
+
+module.exports.getmembersbyroles = function (role, message) {
+  if (!role) return false;
+
+  if (role.startsWith("<@&") && role.endsWith(">")) {
+    role = role.slice(3, -1);
+
+    const array = [];
+    message.guild.members.cache.forEach((member) => {
+      if (member.roles.cache.has(role)) {
+        array.push(member);
+      }
+    });
+    return array;
   }
 };
 

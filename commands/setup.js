@@ -1,17 +1,15 @@
 const fs = require("fs");
-const mongo = require("../mongo")
-const schemareports = require("../schemas/reports-channel-schema")
+const mongo = require("../mongo");
+const schemareports = require("../schemas/reports-channel-schema");
 exports.run = async (client, message, args) => {
-
-// check if dm
+  // check if dm
   if (message.channel.type == "dm")
-  return message.channel
-    .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
-    .then((msg) => {
-      message.delete({ timeout: 300 });
-      msg.delete({ timeout: 5000 });
-    });
-
+    return message.channel
+      .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
+      .then((msg) => {
+        message.delete({ timeout: 300 });
+        msg.delete({ timeout: 5000 });
+      });
 
   // Check Args
   if (!args[0])
@@ -50,26 +48,30 @@ exports.run = async (client, message, args) => {
     });
 
   if (type == "report") {
-    await mongo().then(async mongoose => {
+    await mongo().then(async (mongoose) => {
       try {
-        await schemareports.findOneAndUpdate({_id: message.guild.id}, {_id: message.guild.id, channelID: chan}, {upsert: true})
-        return message.channel.send("**Setup fait avec succès ✅** ").then((msg) => {
-          message.delete({ timeout: 300 });
-          msg.delete({ timeout: 5000 });
-        });
+        await schemareports.findOneAndUpdate(
+          { _id: message.guild.id },
+          { _id: message.guild.id, channelID: chan },
+          { upsert: true }
+        );
+        return message.channel
+          .send("**Setup fait avec succès ✅** ")
+          .then((msg) => {
+            message.delete({ timeout: 300 });
+            msg.delete({ timeout: 5000 });
+          });
       } catch (error) {
         return message.channel.send(`**ERROR : ${err}** `).then((msg) => {
           message.delete({ timeout: 300 });
           msg.delete({ timeout: 5000 });
         });
       } finally {
-        mongoose.connection.close()
+        mongoose.connection.close();
       }
-    })
+    });
   }
 };
-
-
 
 module.exports.help = {
   name: "setup",

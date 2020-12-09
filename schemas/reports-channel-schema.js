@@ -1,15 +1,14 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const reportschema =  mongoose.Schema({
-    _id : {
-        type: String,
-        required: true
-    },
-    channelID : {
-        type: String,
-        required: true
-    }
+const reportschema = mongoose.Schema({
+  _id: {
+    type: String,
+    required: true,
+  },
+  channelID: {
+    type: String,
+    required: true,
+  },
+});
 
-})
-
-module.exports = mongoose.model('reports-channels', reportschema)
+module.exports = mongoose.model("reports-channels", reportschema);
