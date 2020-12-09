@@ -1,7 +1,9 @@
 const fs = require("fs")
 const Discord = require("discord.js")
+const mongo = require("../mongo")
+const schemareports = require("../schemas/reports-channel-schema");
 
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
 // Check args
   if (!args[0])
     return message.channel
@@ -13,9 +15,23 @@ exports.run = (client, message, args) => {
         msg.delete({ timeout: 5000 });
       });
 const phrase = args.slice(0).join(" ");
-const tocheck = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"))
+let tocheck 
+  await mongo().then(async (mongoose) => {
+      // https://www.youtube.com/watch?v=A1VRitCjL6Y 10:24
+      try {
+        const guildID = message.guild.id
+
+        const result = await schemareports.findOne({_id: guildID})
+        tocheck = result.channelID
+      } catch (error) {
+        tocheck = false
+      } finally {
+      mongoose.connection.close()
+      }
+  })
+
  // check if exist 
- if (!tocheck[message.guild.id])
+ if (!tocheck)
  return message.channel
    .send(
      "**⚠️ Veuillez demander à un modérateur de setup le salon reports avec la commande `setup report [channel]`⚠️** "
@@ -24,7 +40,7 @@ const tocheck = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"))
      message.delete({ timeout: 300 });
      msg.delete({ timeout: 5000 });
    });
-const reportschannel = message.guild.channels.cache.get(tocheck[message.guild.id].reportchan)
+const reportschannel = message.guild.channels.cache.get(tocheck)
 const guildavatar = message.guild.iconURL({ format: "png" });
 
 // Check if in DM

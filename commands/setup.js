@@ -1,5 +1,7 @@
 const fs = require("fs");
-exports.run = (client, message, args) => {
+const mongo = require("../mongo")
+const schemareports = require("../schemas/reports-channel-schema")
+exports.run = async (client, message, args) => {
 
 // check if dm
   if (message.channel.type == "dm")
@@ -48,26 +50,27 @@ exports.run = (client, message, args) => {
     });
 
   if (type == "report") {
-    let reportchan = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"));
-
-    reportchan[message.guild.id] = { reportchan: chan };
-
-    fs.writeFileSync(
-      "./json/report.json",
-      JSON.stringify(reportchan),
-      (err) => {
-        if (err) message.channel.send(`ERROR : ${err}`);
-        return;
+    await mongo().then(async mongoose => {
+      try {
+        await schemareports.findOneAndUpdate({_id: message.guild.id}, {_id: message.guild.id, channelID: chan}, {upsert: true})
+        return message.channel.send("**Setup fait avec succès ✅** ").then((msg) => {
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
+      } catch (error) {
+        return message.channel.send(`**ERROR : ${err}** `).then((msg) => {
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 5000 });
+        });
+      } finally {
+        mongoose.connection.close()
       }
-    );
-    
-    reportstest = JSON.parse(fs.readFileSync("./json/report.json", "utf-8"));
-    return message.channel.send("**Setup fait avec succès ✅** ").then((msg) => {
-      message.delete({ timeout: 300 });
-      msg.delete({ timeout: 5000 });
-    });
+    })
   }
 };
+
+
+
 module.exports.help = {
   name: "setup",
   description: "Configure le bot pour le serveur",
