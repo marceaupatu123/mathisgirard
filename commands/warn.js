@@ -15,14 +15,15 @@ function makeid(length) {
 }
 
 exports.run = async (client, message, args) => {
-  let tocheck = true;
+
+  let tocheck = true
   await mongo().then(async (mongoose) => {
     // https://www.youtube.com/watch?v=A1VRitCjL6Y 10:24
     try {
       const guildID = message.guild.id;
 
       const result = await modoschema.findOne({
-        _id: guildID,
+        _id: guildID
       });
       tocheck = result.rolemodo;
     } catch (error) {
@@ -39,23 +40,23 @@ exports.run = async (client, message, args) => {
       )
       .then((msg) => {
         message.delete({
-          timeout: 300,
+          timeout: 300
         });
         msg.delete({
-          timeout: 5000,
+          timeout: 5000
         });
       });
   if (message.member.roles.cache.get(tocheck)) {
-    const emojisiren = client.emojis.cache.get("777979795816185916");
+    const emojisiren = client.emojis.cache.get("777979795816185916")
     if (message.channel.type == "dm")
       return message.channel
         .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
         .then((msg) => {
           message.delete({
-            timeout: 300,
+            timeout: 300
           });
           msg.delete({
-            timeout: 5000,
+            timeout: 5000
           });
         });
 
@@ -64,10 +65,10 @@ exports.run = async (client, message, args) => {
         .send("**⚠️ Vérifier votre commande `warn [membre] [raison]` ⚠️** ")
         .then((msg) => {
           message.delete({
-            timeout: 300,
+            timeout: 300
           });
           msg.delete({
-            timeout: 5000,
+            timeout: 5000
           });
         });
     const qui = functiontools.getMoreUsersFromMention(args[0], message);
@@ -76,10 +77,10 @@ exports.run = async (client, message, args) => {
         .send("**⚠️ Je ne trouve pas l'utilisateur ⚠️**")
         .then((msg) => {
           message.delete({
-            timeout: 300,
+            timeout: 300
           });
           msg.delete({
-            timeout: 5000,
+            timeout: 5000
           });
         });
       return;
@@ -88,15 +89,51 @@ exports.run = async (client, message, args) => {
         .send("**⚠️ Veuillez spécifier un destinataire ⚠️**")
         .then((msg) => {
           message.delete({
-            timeout: 300,
+            timeout: 300
           });
           msg.delete({
-            timeout: 5000,
+            timeout: 5000
           });
         });
       return;
     }
+    if (Array.isArray(qui) == true) {
+      qui.forEach(async(element) => {
     const raison = args.slice(1).join(" ");
+    const guildID = message.guild.id;
+    const memberID = element.id;
+    const ticket = makeid(6);
+    const warning = {
+      author: message.member.user.id,
+      timestamp: new Date().getTime(),
+      ticket,
+      raison,
+    };
+    let tocheck = true;
+
+    await mongo().then(async (mongoose) => {
+      try {
+            await warnSchema.findOneAndUpdate({
+              guildID,
+              memberID,
+            }, {
+              guildID,
+              memberID,
+              $push: {
+                warnings: warning,
+              },
+            }, {
+              upsert: true,
+            });
+      } catch (error) {
+        tocheck = false;
+      } finally {
+        mongoose.connection.close();
+      }
+    });
+  })
+} else {
+  const raison = args.slice(1).join(" ");
     const guildID = message.guild.id;
     const memberID = qui.id;
     const ticket = makeid(6);
@@ -109,56 +146,26 @@ exports.run = async (client, message, args) => {
     let tocheck = true;
 
     await mongo().then(async (mongoose) => {
-      if (Array.isArray(qui) == true) {
-        qui.forEach(async (element) => {
-          try {
-            await warnSchema.findOneAndUpdate(
-              {
-                guildID,
-                memberID: element.id,
-              },
-              {
-                guildID,
-                memberID: element.id,
-                $push: {
-                  warnings: warning,
-                },
-              },
-              {
-                upsert: true,
-              }
-            );
-          } catch (error) {
-            tocheck = false;
-          } finally {
-            mongoose.connection.close();
-          }
-        });
-      } else {
-        try {
-          await warnSchema.findOneAndUpdate(
-            {
+      try {
+            await warnSchema.findOneAndUpdate({
               guildID,
               memberID,
-            },
-            {
+            }, {
               guildID,
               memberID,
               $push: {
                 warnings: warning,
               },
-            },
-            {
+            }, {
               upsert: true,
-            }
-          );
-        } catch (error) {
-          tocheck = false;
-        } finally {
-          mongoose.connection.close();
-        }
+            });
+      } catch (error) {
+        tocheck = false;
+      } finally {
+        mongoose.connection.close();
       }
     });
+}
 
     if (tocheck == false) return;
 
@@ -181,10 +188,10 @@ exports.run = async (client, message, args) => {
     if (Array.isArray(qui) == true) {
       qui.forEach((element) => {
         element.send(embed);
-      });
+      })
     } else {
       qui.send({
-        embed,
+        embed
       });
     }
 
@@ -192,23 +199,21 @@ exports.run = async (client, message, args) => {
       .send(`**${emojisiren} Infraction Enregistré ${emojisiren}**`)
       .then((msg) => {
         message.delete({
-          timeout: 300,
+          timeout: 300
         });
         msg.delete({
-          timeout: 5000,
+          timeout: 5000
         });
       });
   } else {
     message.channel
-      .send(
-        `**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role ${tocheck.name}*`
-      )
+      .send(`**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role ${tocheck.name}*`)
       .then((msg) => {
         message.delete({
-          timeout: 300,
+          timeout: 300
         });
         msg.delete({
-          timeout: 5000,
+          timeout: 5000
         });
       });
   }
