@@ -135,7 +135,7 @@ exports.run = async (client, message, args) => {
     if (tocheck == false) return;
 
     const embed = new Discord.MessageEmbed()
-      .setTitle(`Avertissement "${ticket}"`)
+      .setTitle(`Avertissement ${ticket}`)
       .setAuthor(
         `${message.guild.name}`,
         `${message.guild.iconURL({ format: "png" })}`
@@ -190,7 +190,7 @@ exports.run = async (client, message, args) => {
     if (tocheck == false) return;
 
     const embed = new Discord.MessageEmbed()
-      .setTitle(`Avertissement "${ticket}"`)
+      .setTitle(`Avertissement ${ticket}`)
       .setAuthor(
         `${message.guild.name}`,
         `${message.guild.iconURL({ format: "png" })}`
