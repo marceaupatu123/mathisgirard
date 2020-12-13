@@ -131,9 +131,30 @@ exports.run = async (client, message, args) => {
         mongoose.connection.close();
       }
     });
-  })
-} else {
-  const raison = args.slice(1).join(" ");
+
+    if (tocheck == false) return;
+
+    const embed = new Discord.MessageEmbed()
+      .setTitle(`Avertissement "${ticket}"`)
+      .setAuthor(
+        `${message.guild.name}`,
+        `${message.guild.iconURL({ format: "png" })}`
+      )
+      .setColor(16729600)
+      .setDescription(`Vous venez d'être averti : **${raison}**`)
+      .setFooter(
+        "Veillez à ne pas être trop averti",
+        "https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png"
+      )
+      .setImage(
+        "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
+      )
+      .setTimestamp();
+
+        element.send(embed);
+      })
+    } else {
+      const raison = args.slice(1).join(" ");
     const guildID = message.guild.id;
     const memberID = qui.id;
     const ticket = makeid(6);
@@ -165,7 +186,6 @@ exports.run = async (client, message, args) => {
         mongoose.connection.close();
       }
     });
-}
 
     if (tocheck == false) return;
 
@@ -185,14 +205,8 @@ exports.run = async (client, message, args) => {
         "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
       )
       .setTimestamp();
-    if (Array.isArray(qui) == true) {
-      qui.forEach((element) => {
-        element.send(embed);
-      })
-    } else {
-      qui.send({
-        embed
-      });
+
+        qui.send(embed);
     }
 
     return message.channel
