@@ -86,12 +86,12 @@ exports.run = async (client, message, args) => {
   if (tocheck == false) return;
 
   const embed = new Discord.MessageEmbed()
-    .setTitle(`Avertissement ${ticket}`)
+    .setTitle(`Avertissement "${ticket}"`)
     .setAuthor(
       `${message.guild.name}`,
       `${message.guild.iconURL({ format: "png" })}`
     )
-    .setColor("NAVY")
+    .setColor(16729600)
     .setDescription(`Vous venez d'être averti : **${raison}**`)
     .setFooter(
       "Veillez à ne pas être trop averti",

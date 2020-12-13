@@ -61,20 +61,20 @@ exports.run = async (client, message, args) => {
           )}** pour **"${raison}"**\n\n`;
         }
         const embed = new Discord.MessageEmbed()
-          .setTitle(`Avertissement ${ticket2}`)
+          .setTitle(`Avertissement "${ticket2}"`)
           .setAuthor(
             `${message.guild.name}`,
             `${message.guild.iconURL({ format: "png" })}`
           )
-          .setColor("NAVY")
+          .setColor(16729600)
           .setDescription(reply)
           .setFooter(
-            "Veillez à ne pas être trop averti",
+            "Vive les modérateurs",
             "https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png"
           )
-          .setImage(
-            "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
-          )
+          // .setImage(
+          //   "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
+          // )
           .setTimestamp();
         message.channel.send({ embed }).then((msg) => {
           message.delete({ timeout: 300 });
@@ -102,13 +102,15 @@ exports.run = async (client, message, args) => {
         });
 
         let reply = ``;
-
+        let counter = 0
         for (const warns of results.warnings) {
+          counter++
           const { author, timestamp, raison, ticket } = warns;
 
           reply += `**-** Avertissement **${ticket}** fait par <@${author}> le ${new Date(
             timestamp
           ).toLocaleDateString("fr-FR", options)} pour "${raison}"\n\n`;
+          
         }
 
         const embed = new Discord.MessageEmbed()
@@ -117,10 +119,10 @@ exports.run = async (client, message, args) => {
             `${message.guild.name}`,
             `${message.guild.iconURL({ format: "png" })}`
           )
-          .setColor("NAVY")
-          .setDescription(reply)
+          .setColor(16729600)
+          .setDescription(`**l'Utilisateur à ${counter} avertissement(s**\n\n${reply}`)
           .setFooter(
-            "Veillez à ne pas être trop averti",
+            "Vive les modérateurs",
             "https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png"
           )
           .setImage(
