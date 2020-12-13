@@ -1,6 +1,7 @@
 const mongo = require("../mongo");
 const functiontools = require("../main");
 const warnSchema = require("../schemas/warn-schema");
+const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
   if (message.channel.type == "dm")
@@ -29,6 +30,15 @@ exports.run = async (client, message, args) => {
 
   const guildID = message.guild.id;
   const ticket2 = args[0];
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZoneName: "short",
+  };
   let tocheck;
 
   if (args[0].length == 6) {
@@ -38,16 +48,38 @@ exports.run = async (client, message, args) => {
           guildID,
           "warnings.ticket": ticket2,
         });
-        let reply = `Avertissements ${ticket2}:\n\n`;
+        let reply = ``;
 
         for (const warns of results.warnings) {
           const { author, timestamp, raison } = warns;
 
-          reply += `Avertissement fait par <@${author}> le ${new Date(
-            timestamp
-          ).toLocaleDateString()} pour "${raison}"\n\n`;
+          reply += `Avertissement fait par <@${author}> pour <@${
+            results.memberID
+          }>le **${new Date(timestamp).toLocaleDateString(
+            "fr-FR",
+            options
+          )}** pour **"${raison}"**\n\n`;
         }
-        message.channel.send(reply);
+        const embed = new Discord.MessageEmbed()
+          .setTitle(`Avertissement ${ticket2}`)
+          .setAuthor(
+            `${message.guild.name}`,
+            `${message.guild.iconURL({ format: "png" })}`
+          )
+          .setColor("NAVY")
+          .setDescription(reply)
+          .setFooter(
+            "Veillez à ne pas être trop averti",
+            "https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png"
+          )
+          .setImage(
+            "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
+          )
+          .setTimestamp();
+        message.channel.send({ embed }).then((msg) => {
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 10000 });
+        });
       } catch (err) {
         tocheck = false;
       } finally {
@@ -69,17 +101,36 @@ exports.run = async (client, message, args) => {
           memberID: qui.id,
         });
 
-        let reply = `Avertissements de <@${memberID}>:\n\n`;
+        let reply = ``;
 
         for (const warns of results.warnings) {
           const { author, timestamp, raison, ticket } = warns;
 
-          reply += `Avertissement ${ticket} fait par <@${author}> le ${new Date(
+          reply += `**-** Avertissement **${ticket}** fait par <@${author}> le ${new Date(
             timestamp
-          ).toLocaleDateString()} pour "${raison}"\n\n`;
+          ).toLocaleDateString("fr-FR", options)} pour "${raison}"\n\n`;
         }
 
-        message.channel.send(reply);
+        const embed = new Discord.MessageEmbed()
+          .setTitle(`Avertissement(s) de ${message.guild.members.cache.get(results.memberID).displayName}`)
+          .setAuthor(
+            `${message.guild.name}`,
+            `${message.guild.iconURL({ format: "png" })}`
+          )
+          .setColor("NAVY")
+          .setDescription(reply)
+          .setFooter(
+            "Veillez à ne pas être trop averti",
+            "https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png"
+          )
+          .setImage(
+            "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
+          )
+          .setTimestamp();
+        message.channel.send({ embed }).then((msg) => {
+          message.delete({ timeout: 300 });
+          msg.delete({ timeout: 10000});
+        });
       } catch (err) {
         tocheck = false;
       } finally {
