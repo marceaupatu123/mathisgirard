@@ -1,6 +1,7 @@
 const mongo = require("../mongo");
 const functiontools = require("../main");
 const warnSchema = require("../schemas/warn-schema");
+const modoschema = require("../schemas/modo-roles-schema");
 const Discord = require("discord.js");
 function makeid(length) {
   var result = "";
@@ -13,6 +14,32 @@ function makeid(length) {
 }
 
 exports.run = async (client, message, args) => {
+
+  let tocheck = true
+  await mongo().then(async (mongoose) => {
+    // https://www.youtube.com/watch?v=A1VRitCjL6Y 10:24
+    try {
+      const guildID = message.guild.id;
+
+      const result = await modoschema.findOne({ _id: guildID });
+      tocheck = result.rolemodo;
+    } catch (error) {
+      tocheck = false;
+    } finally {
+      mongoose.connection.close();
+    }
+  });
+
+  if (tocheck == false)
+    return message.channel
+      .send(
+        "**⚠️ Veuillez demander à un administrateur de setup les roles modérateurs avec la commande `setup warnrole [role]`⚠️** "
+      )
+      .then((msg) => {
+        message.delete({ timeout: 300 });
+        msg.delete({ timeout: 5000 });
+      });
+if (message.member.roles.cache.get(tocheck)) {
   const emojisiren = client.emojis.cache.get("777979795816185916")
   if (message.channel.type == "dm")
     return message.channel
@@ -110,6 +137,14 @@ exports.run = async (client, message, args) => {
       message.delete({ timeout: 300 });
       msg.delete({ timeout: 5000 });
     });
+  } else {
+    message.channel
+      .send(`**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role ${tocheck.name}*`)
+      .then((msg) => {
+        message.delete({ timeout: 300 });
+        msg.delete({ timeout: 5000 });
+      });
+  }
 };
 
 module.exports.help = {
