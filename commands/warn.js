@@ -105,7 +105,7 @@ exports.run = async (client, message, args) => {
   qui.send({ embed });
 
   return message.channel
-    .send("**🛂 Infraction Enregistré ✅** ")
+    .send(`**${emojisiren} Infraction Enregistré ${emojisiren}**`)
     .then((msg) => {
       message.delete({ timeout: 300 });
       msg.delete({ timeout: 5000 });
