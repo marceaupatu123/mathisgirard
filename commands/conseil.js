@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
         message.delete({ timeout: 300 });
         msg.delete({ timeout: 5000 });
       });
-  if (!args[0] && !args[1])
+  if (!args[0] || !args[1])
     return message.channel
       .send(
         "**⚠️ Vérifier votre commande `conseil [type] [mention+ ou channel] [phrase]` ⚠️** "

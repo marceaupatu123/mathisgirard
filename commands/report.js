@@ -1,9 +1,14 @@
-const fs = require("fs");
-const Discord = require("discord.js");
 const mongo = require("../mongo");
 const schemareports = require("../schemas/reports-channel-schema");
 
 exports.run = async (client, message, args) => {
+  if (message.channel.type == "dm")
+    return message.channel
+      .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
+      .then((msg) => {
+        message.delete({ timeout: 300 });
+        msg.delete({ timeout: 5000 });
+      });
   // Check args
   if (!args[0])
     return message.channel
@@ -13,7 +18,7 @@ exports.run = async (client, message, args) => {
         msg.delete({ timeout: 5000 });
       });
   const phrase = args.slice(0).join(" ");
-  let tocheck;
+  let tocheck = true
   await mongo().then(async (mongoose) => {
     // https://www.youtube.com/watch?v=A1VRitCjL6Y 10:24
     try {
@@ -29,7 +34,7 @@ exports.run = async (client, message, args) => {
   });
 
   // check if exist
-  if (!tocheck)
+  if (tocheck == false)
     return message.channel
       .send(
         "**⚠️ Veuillez demander à un modérateur de setup le salon reports avec la commande `setup report [channel]`⚠️** "
