@@ -12,12 +12,12 @@ exports.run = (client, message) => {
     .addFields(
       {
         name: "Modération",
-        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*\n`warn` : **[COMPATIBLE MENTION+]** Permet d'avertir quelqu'un. *(Necessite un rôle particulier)*",
+        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*\n`Warn` : **[COMPATIBLE MENTION+]** Permet d'avertir quelqu'un. *(Necessite un rôle particulier)*",
         inline: true,
       },
       {
         name: "Utile",
-        value: "`Ping` : Permet de connaitre la latence du bot.\n`Report`: Permet de report un problèle à la moderation.\n`checkwarn`: Permet d'avoir les warns d'un membre ou d'un code",
+        value: "`Ping` : Permet de connaitre la latence du bot.\n`Report`: Permet de report un problèle à la moderation.\n`Checkwarn`: Permet d'avoir les warns d'un membre ou d'un code",
         inline: true,
       },
       {
