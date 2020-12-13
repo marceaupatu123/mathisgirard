@@ -2,7 +2,7 @@ const mongo = require("../mongo");
 const functiontools = require("../main");
 const warnSchema = require("../schemas/warn-schema");
 const Discord = require("discord.js");
-const full_icu = require('full-icu')
+
 
 exports.run = async (client, message, args) => {
   if (message.channel.type == "dm")
