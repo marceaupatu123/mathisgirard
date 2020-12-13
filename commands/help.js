@@ -12,7 +12,7 @@ exports.run = (client, message) => {
     .addFields(
       {
         name: "Modération",
-        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*\n`warn` : **[EN ATTENTE DE CONVERTION MENTION+]** Permet d'avertir quelqu'un. *(Necessite un rôle particulier)*",
+        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*\n`warn` : **[COMPATIBLE MENTION+]** Permet d'avertir quelqu'un. *(Necessite un rôle particulier)*",
         inline: true,
       },
       {
