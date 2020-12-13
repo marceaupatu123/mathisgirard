@@ -17,7 +17,7 @@ exports.run = (client, message) => {
       },
       {
         name: "Utile",
-        value: "`Ping` : Permet de connaitre la latence du bot.\n`Report`: Permet de report un problèle à la moderation.\n`checkwarn`: **[EN ATTENTE DE CONVERTION MENTION+]** Permet d'avoir les warns d'un membre ou d'un code",
+        value: "`Ping` : Permet de connaitre la latence du bot.\n`Report`: Permet de report un problèle à la moderation.\n`checkwarn`: Permet d'avoir les warns d'un membre ou d'un code",
         inline: true,
       },
       {

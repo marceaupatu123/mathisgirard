@@ -74,6 +74,7 @@ exports.run = async (client, message, args) => {
           //   "https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1"
           // )
           .setTimestamp();
+          
         message.channel.send({ embed }).then((msg) => {
           message.delete({ timeout: 300 });
           msg.delete({ timeout: 10000 });
