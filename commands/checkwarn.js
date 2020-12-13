@@ -57,8 +57,7 @@ exports.run = async (client, message, args) => {
           reply += `Avertissement fait par <@${author}> pour <@${
             results.memberID
           }>le **${new Date(timestamp).toLocaleDateString(
-            "fr-FR",
-            options
+            "fr-FR"
           )}** pour **"${raison}"**\n\n`;
         }
         const embed = new Discord.MessageEmbed()
@@ -110,7 +109,7 @@ exports.run = async (client, message, args) => {
 
           reply += `**-** Avertissement **${ticket}** fait par <@${author}> le ${new Date(
             timestamp
-          ).toLocaleDateString("fr-FR", options)} pour "${raison}"\n\n`;
+          ).toLocaleDateString("fr-FR")} pour "${raison}"\n\n`;
           
         }
 
