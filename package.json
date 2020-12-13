@@ -4,7 +4,7 @@
   "description": "my first discord bot",
   "main": "main.js",
   "scripts": {
-    "test": "node --icu-data-dir=node_modules\\full-icu main.js"
+    "start": "node --icu-data-dir=node_modules/full-icu main.js"
   },
   "author": "Dominus_Marceau",
   "license": "ISC",
