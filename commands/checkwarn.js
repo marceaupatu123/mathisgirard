@@ -54,11 +54,9 @@ exports.run = async (client, message, args) => {
         for (const warns of results.warnings) {
           const { author, timestamp, raison } = warns;
 
-          reply += `Avertissement fait par <@${author}> pour <@${
+          reply += `Avertissement fait par <@${author}> à <@${
             results.memberID
-          }>le **${new Date(timestamp).toLocaleDateString(
-            "fr-FR"
-          )}** pour **"${raison}"**\n\n`;
+          }> pour **"${raison}"**\n\n`;
         }
         const embed = new Discord.MessageEmbed()
           .setTitle(`Avertissement "${ticket2}"`)
@@ -107,9 +105,7 @@ exports.run = async (client, message, args) => {
           counter++
           const { author, timestamp, raison, ticket } = warns;
 
-          reply += `**-** Avertissement **${ticket}** fait par <@${author}> le ${new Date(
-            timestamp
-          ).toLocaleDateString("fr-FR")} pour "${raison}"\n\n`;
+          reply += `**-** Avertissement **${ticket}** fait par <@${author}> pour "${raison}"\n\n`;
           
         }
 
