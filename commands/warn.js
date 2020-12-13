@@ -13,6 +13,7 @@ function makeid(length) {
 }
 
 exports.run = async (client, message, args) => {
+  const emojisiren = client.emojis.cache.get("777979795816185916")
   if (message.channel.type == "dm")
     return message.channel
       .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
