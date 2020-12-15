@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-  if (message.guild.me.hasPermission("MANAGE_MESSAGES")) {
+  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
     return message.channel
     .send("**Je n'ai pas la permission de gérer les messages 🤒** ")
     .then((msg) => {
