@@ -1,4 +1,12 @@
 exports.run = (client, message, args) => {
+  if (message.guild.me.hasPermission("MANAGE_MESSAGES")) {
+    return message.channel
+    .send("**Je n'ai pas la permission de gérer les messages 🤒** ")
+    .then((msg) => {
+      message.delete({ timeout: 300 });
+      msg.delete({ timeout: 5000 });
+    });
+  }
   const funtiontools = require("../main");
   if (!args[0])
     return message.channel
