@@ -100,11 +100,25 @@ exports.run = (client, message, args) => {
         .setTimestamp();
       if (Array.isArray(qui) == true) {
         qui.forEach((element) => {
-          element.send(embed);
+          element.send(embed).catch(() => {
+            return message.channel
+            .send(`**⚠️ Je n'ai pas pu envoyer le message à ${element} ⚠️**`)
+            .then((msg) => {
+              message.delete({ timeout: 300 });
+              msg.delete({ timeout: 5000 });
+            });
+          })
         });
         logscmpc.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
       } else {
-        qui.send(embed);
+        qui.send(embed).catch(() => {
+          return message.channel
+          .send(`**⚠️ Je n'ai pas pu envoyer le message à ${qui} ⚠️**`)
+          .then((msg) => {
+            message.delete({ timeout: 300 });
+            msg.delete({ timeout: 5000 });
+          });
+        })
         logscmpc.send(`Pour ${qui} par ${author},`, { embed });
       }
     } else if (type == "co") {
@@ -129,11 +143,25 @@ exports.run = (client, message, args) => {
         .setTimestamp();
       if (Array.isArray(qui) == true) {
         qui.forEach((element) => {
-          element.send(embed);
+          element.send(embed).catch(() => {
+            return message.channel
+            .send(`**⚠️ Je n'ai pas pu envoyer le message à ${element} ⚠️**`)
+            .then((msg) => {
+              message.delete({ timeout: 300 });
+              msg.delete({ timeout: 5000 });
+            });
+          })
         });
         logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
       } else {
-        qui.send(embed);
+        qui.send(embed).catch(() => {
+          return message.channel
+          .send(`**⚠️ Je n'ai pas pu envoyer le message à ${qui} ⚠️**`)
+          .then((msg) => {
+            message.delete({ timeout: 300 });
+            msg.delete({ timeout: 5000 });
+          });
+        })
         logsco.send(`Pour ${qui} par ${author},`, { embed });
       }
     } else if (type == "cr") {
@@ -161,11 +189,25 @@ exports.run = (client, message, args) => {
         .setTimestamp();
       if (Array.isArray(qui) == true) {
         qui.forEach((element) => {
-          element.send(embed);
+          element.send(embed).catch(() => {
+            return message.channel
+            .send(`**⚠️ Je n'ai pas pu envoyer le message à ${element} ⚠️**`)
+            .then((msg) => {
+              message.delete({ timeout: 300 });
+              msg.delete({ timeout: 5000 });
+            });
+          })
         });
         logscr.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
       } else {
-        qui.send(embed);
+        qui.send(embed).catch(() => {
+          return message.channel
+          .send(`**⚠️ Je n'ai pas pu envoyer le message à ${qui} ⚠️**`)
+          .then((msg) => {
+            message.delete({ timeout: 300 });
+            msg.delete({ timeout: 5000 });
+          });
+        })
         logscr.send(`Pour ${qui} par ${author},`, { embed });
       }
     } else {
