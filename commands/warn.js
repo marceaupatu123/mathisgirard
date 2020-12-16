@@ -47,7 +47,7 @@ exports.run = async (client, message, args) => {
         });
       });
   if (message.member.roles.cache.get(tocheck)) {
-    const emojisiren = client.emojis.cache.get("777979795816185916")
+    const emojisiren = client.emojis.cache.get("613053264350543873")
     if (message.channel.type == "dm")
       return message.channel
         .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
