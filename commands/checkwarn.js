@@ -54,7 +54,7 @@ exports.run = async (client, message, args) => {
         for (const warns of results.warnings) {
           const { author, timestamp, raison } = warns;
 
-          reply += `Avertissement fait par <@${author}> à <@${
+          reply += `Avertissement fait par <@${author}> le ${new Date(timestamp).toLocaleDateString("fr-FR", options)} à <@${
             results.memberID
           }> pour **"${raison}"**\n\n`;
         }
@@ -106,7 +106,7 @@ exports.run = async (client, message, args) => {
           counter++
           const { author, timestamp, raison, ticket } = warns;
 
-          reply += `**-** Avertissement **${ticket}** fait par <@${author}> pour "${raison}"\n\n`;
+          reply += `**-** Avertissement **${ticket}** fait par <@${author}> le ${new Date(timestamp).toLocaleDateString("fr-FR", options)} pour "${raison}"\n\n`;
           
         }
 
