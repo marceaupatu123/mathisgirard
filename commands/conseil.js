@@ -30,7 +30,7 @@ exports.run = (client, message, args) => {
   const logscmpc = message.guild.channels.cache.get("777492167710212136");
   const logsco = message.guild.channels.cache.get("777493999233269790");
   const logscr = message.guild.channels.cache.get("777494538319167508");
-  const covid = client.guilds.cache.get("769252353118699600");
+  const covid = client.guilds.cache.get("789429664149274664");
 
   if (message.guild.id == covid.id) {
     // Check variable
@@ -42,7 +42,7 @@ exports.run = (client, message, args) => {
           msg.delete({ timeout: 5000 });
         });
       return;
-    } else if (type != "cmpc" && type != "co" && type != "cr") {
+    } else if (type != "iga") {
       message.channel
         .send(
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
@@ -78,8 +78,8 @@ exports.run = (client, message, args) => {
       return;
     }
 
-    if (type == "cmpc") {
-      if (!message.member.roles.cache.has("770665806853308426")) {
+    if (type == "iga") {
+      if (!message.member.roles.cache.has("789437217303035915")) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
           .then((msg) => {
@@ -91,12 +91,12 @@ exports.run = (client, message, args) => {
       const embed = new Discord.MessageEmbed()
         .setTitle(`Lettre de ${author.username}`)
         .setAuthor(
-          "Cour de Modération Pénal et Civique",
-          "https://dzcharikati.net/wp-content/uploads/2019/08/scales-of-justice-logo.jpg"
+          "Inspection générale des armées",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Emblem_of_the_Inspectorate_General_of_the_French_Armed_Forces.png/390px-Emblem_of_the_Inspectorate_General_of_the_French_Armed_Forces.png"
         )
         .setColor("ORANGE")
         .setDescription(phrase)
-        .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
+        .setFooter("Ce message est un message officiel", guildavatar)
         .setTimestamp();
       if (Array.isArray(qui) == true) {
         qui.forEach((element) => {
@@ -121,96 +121,7 @@ exports.run = (client, message, args) => {
         })
         logscmpc.send(`Pour ${qui} par ${author},`, { embed });
       }
-    } else if (type == "co") {
-      if (!message.member.roles.cache.has("770995381038350366")) {
-        message.channel
-          .send("**Tu n'as pas la permission de faire ça ⛔️**")
-          .then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
-        return;
-      }
-      const embed = new Discord.MessageEmbed()
-        .setTitle(`Lettre de ${author.username}`)
-        .setAuthor(
-          "Conseil Overabused",
-          "https://eacea.ec.europa.eu/sites/eacea-site/files/flag_2colors.png"
-        )
-        .setColor("BLACK")
-        .setDescription(phrase)
-        .setFooter("Vous disposez de 48h pour demander un recours", guildavatar)
-        .setTimestamp();
-      if (Array.isArray(qui) == true) {
-        qui.forEach((element) => {
-          element.send(embed).catch(() => {
-            return message.channel
-            .send(`**⚠️ Je n'ai pas pu envoyer le message à ${element} ⚠️**`)
-            .then((msg) => {
-              message.delete({ timeout: 300 });
-              msg.delete({ timeout: 5000 });
-            });
-          })
-        });
-        logsco.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
-      } else {
-        qui.send(embed).catch(() => {
-          return message.channel
-          .send(`**⚠️ Je n'ai pas pu envoyer le message à ${qui} ⚠️**`)
-          .then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
-        })
-        logsco.send(`Pour ${qui} par ${author},`, { embed });
-      }
-    } else if (type == "cr") {
-      if (
-        !message.member.roles.cache.has("777185655721033760") &&
-        !message.member.roles.cache.has(783380622583529523)
-      ) {
-        message.channel
-          .send("**Tu n'as pas la permission de faire ça ⛔️**")
-          .then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
-        return;
-      }
-      const embed = new Discord.MessageEmbed()
-        .setTitle(`Lettre de ${author.username}`)
-        .setAuthor(
-          "Conseil Républicain",
-          "https://static.elysee.fr/images/default/0001/02/310d3dc879953b7e758fa4376d2366f21ee863e9.jpeg?w=300&h=400&crop=723,963,266,387&s=c82faa0b6fcb53e06501cd07b77812941d89581304399030e45353ddcf0428f8"
-        )
-        .setColor("PURPLE")
-        .setDescription(phrase)
-        .setFooter("Vous ne pouvez pas avoir de recours", guildavatar)
-        .setTimestamp();
-      if (Array.isArray(qui) == true) {
-        qui.forEach((element) => {
-          element.send(embed).catch(() => {
-            return message.channel
-            .send(`**⚠️ Je n'ai pas pu envoyer le message à ${element} ⚠️**`)
-            .then((msg) => {
-              message.delete({ timeout: 300 });
-              msg.delete({ timeout: 5000 });
-            });
-          })
-        });
-        logscr.send(`Pour ${qui.join(" et ")} par ${author},`, { embed });
-      } else {
-        qui.send(embed).catch(() => {
-          return message.channel
-          .send(`**⚠️ Je n'ai pas pu envoyer le message à ${qui} ⚠️**`)
-          .then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
-        })
-        logscr.send(`Pour ${qui} par ${author},`, { embed });
-      }
-    } else {
+    }  else {
       return message.channel
         .send(
           "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
