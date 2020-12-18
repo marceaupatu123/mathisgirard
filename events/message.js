@@ -24,7 +24,7 @@ module.exports = async (client, message) => {
       const { lastMessage, timer } = userData
       const difference = message.createdTimestamp - lastMessage.createdTimestamp
       let msgCount = userData.msgCount
-      if (difference > 3000) {
+      if (difference > 5000) {
         clearTimeout(timer)
         userData.msgCount = 1
         userData.lastMessage = message
@@ -36,7 +36,6 @@ module.exports = async (client, message) => {
         ++msgCount
         if (parseInt(msgCount) === 5) {
         // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
-          msgCount = 0
           const muterole = await mute(client, message, message.member)
           setTimeout(async () => {
             message.member.roles.remove(muterole).catch(() => {
