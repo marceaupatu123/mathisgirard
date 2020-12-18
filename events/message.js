@@ -34,7 +34,6 @@ module.exports = async (client, message) => {
         usermap.set(message.author.id, userData)
       } else {
         ++msgCount
-        setTimeout(() => {}, 400)
         if (parseInt(msgCount) === 5) {
         // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
@@ -44,10 +43,10 @@ module.exports = async (client, message) => {
                 msg.delete({ timeout: 5000 })
               })
             })
+            message.reply(`Vous avez été démute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
+              msg.delete({ timeout: 5000 })
+            })
           }, 7000)
-          message.reply(`Vous avez été démute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
-            msg.delete({ timeout: 5000 })
-          })
         } else {
           userData.msgCount = msgCount
           usermap.set(message.author.id, userData)
