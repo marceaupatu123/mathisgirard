@@ -27,9 +27,7 @@ exports.run = (client, message, args) => {
   const phrase = args.slice(2).join(" ");
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author;
-  const logscmpc = message.guild.channels.cache.get("777492167710212136");
-  const logsco = message.guild.channels.cache.get("777493999233269790");
-  const logscr = message.guild.channels.cache.get("777494538319167508");
+  const logscmpc = message.guild.channels.cache.get("789476900052795392");
   const covid = client.guilds.cache.get("789429664149274664");
 
   if (message.guild.id == covid.id) {
@@ -45,7 +43,7 @@ exports.run = (client, message, args) => {
     } else if (type != "iga") {
       message.channel
         .send(
-          "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ "
+          "⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **iga** ⚠️ "
         )
         .then((msg) => {
           message.delete({ timeout: 300 });
