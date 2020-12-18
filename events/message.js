@@ -18,7 +18,6 @@ module.exports = async (client, message) => {
       mongoose.connection.close()
     }
   })
-  tocheck = true
   if (tocheck) {
     const LIMIT = 6
     const TIME = 6000
@@ -28,6 +27,7 @@ module.exports = async (client, message) => {
       const { lastMessage, timer } = userData
       const difference = message.createdTimestamp - lastMessage.createdTimestamp
       let msgCount = userData.msgCount
+      console.log(difference)
       if (difference > DIFF) {
         clearTimeout(timer)
         userData.msgCount = 1
