@@ -34,10 +34,10 @@ module.exports = async (client, message) => {
         usermap.set(message.author.id, userData)
       } else {
         ++msgCount
+        setTimeout(() => {}, 80)
         if (parseInt(msgCount) === 5) {
         // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
-          setTimeout(() => {}, 80)
           setTimeout(async () => {
             message.member.roles.remove(muterole)
             message.reply(`Vous avez été démute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
