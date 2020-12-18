@@ -34,7 +34,7 @@ module.exports = async (client, message) => {
         usermap.set(message.author.id, userData)
       } else {
         ++msgCount
-        if (parseInt(msgCount) === 7) {
+        if (parseInt(msgCount) === 6) {
           // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
           setTimeout(async () => {
