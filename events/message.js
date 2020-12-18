@@ -24,7 +24,7 @@ module.exports = async (client, message) => {
       const { lastMessage, timer } = userData
       const difference = message.createdTimestamp - lastMessage.createdTimestamp
       let msgCount = userData.msgCount
-      if (difference > 2500) {
+      if (difference > 1000) {
         clearTimeout(timer)
         userData.msgCount = 1
         userData.lastMessage = message
