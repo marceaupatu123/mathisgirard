@@ -5,21 +5,21 @@ const muteschema = require('../schemas/mute-schema')
 module.exports = async (client, message) => {
   if (message.author.bot) return
   let tocheck = false
-  await mongo().then(async (mongoose) => {
+  if (!message.member.roles.cache.has(message.guild.roles.cache.find(role => role.name === 'muted'))) {
+    await mongo().then(async (mongoose) => {
     // https://www.youtube.com/watch?v=A1VRitCjL6Y 10:24
-    try {
-      const guildID = message.guild.id
+      try {
+        const guildID = message.guild.id
 
-      const result = await muteschema.findOne({ _id: guildID })
-      tocheck = result.mute
-    } catch (error) {
-      tocheck = false
-    } finally {
-      mongoose.connection.close()
-    }
-  })
-  if (tocheck) {
-    if (!message.member.roles.cache.has(message.guild.roles.cache.find(role => role.name === 'muted'))) {
+        const result = await muteschema.findOne({ _id: guildID })
+        tocheck = result.mute
+      } catch (error) {
+        tocheck = false
+      } finally {
+        mongoose.connection.close()
+      }
+    })
+    if (tocheck) {
       if (usermap.has(message.author.id)) {
         const userData = usermap.get(message.author.id)
         const { lastMessage, timer } = userData
