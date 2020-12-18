@@ -41,6 +41,9 @@ module.exports = async (client, message) => {
         if (parseInt(msgCount) === LIMIT) {
           // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
+          message.reply(`Vous avez été mute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
+            msg.delete({ timeout: 5000 })
+          })
           setTimeout(async () => {
             try {
               message.member.roles.remove(muterole)

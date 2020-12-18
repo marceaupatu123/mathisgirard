@@ -127,9 +127,6 @@ module.exports.mute = async function (client, message, member) {
     }
   }
   member.roles.add(muterole)
-  message.reply(`Vous avez été mute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
-    msg.delete({ timeout: 5000 })
-  })
   return muterole
 }
 client.login(config.token)
