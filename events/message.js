@@ -18,23 +18,27 @@ module.exports = async (client, message) => {
       mongoose.connection.close()
     }
   })
+  tocheck = true
   if (tocheck) {
+    const LIMIT = 6
+    const TIME = 6000
+    const DIFF = 2000
     if (usermap.has(message.author.id)) {
       const userData = usermap.get(message.author.id)
       const { lastMessage, timer } = userData
       const difference = message.createdTimestamp - lastMessage.createdTimestamp
       let msgCount = userData.msgCount
-      if (difference > 2000) {
+      if (difference > DIFF) {
         clearTimeout(timer)
         userData.msgCount = 1
         userData.lastMessage = message
         userData.timer = setTimeout(() => {
           usermap.delete(message.author.id)
-        }, 10000)
+        }, TIME)
         usermap.set(message.author.id, userData)
       } else {
         ++msgCount
-        if (parseInt(msgCount) === 6) {
+        if (parseInt(msgCount) === LIMIT) {
           // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
           setTimeout(async () => {
@@ -46,7 +50,7 @@ module.exports = async (client, message) => {
             } catch (err) {
               console.log(err)
             }
-          }, 7000)
+          }, TIME)
         } else {
           userData.msgCount = msgCount
           usermap.set(message.author.id, userData)
@@ -55,7 +59,7 @@ module.exports = async (client, message) => {
     } else {
       const fn = setTimeout(() => {
         usermap.delete(message.author.id)
-      }, 10000)
+      }, TIME)
       usermap.set(message.author.id, {
         msgCount: 1,
         lastMessage: message,
