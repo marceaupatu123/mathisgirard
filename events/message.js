@@ -36,6 +36,7 @@ module.exports = async (client, message) => {
         ++msgCount
         if (parseInt(msgCount) === 5) {
         // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
+          msgCount = 0
           const muterole = await mute(client, message, message.member)
           setTimeout(async () => {
             message.member.roles.remove(muterole).catch(() => {
