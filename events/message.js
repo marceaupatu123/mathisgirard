@@ -39,7 +39,11 @@ module.exports = async (client, message) => {
         // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
           setTimeout(async () => {
-            message.member.roles.remove(muterole)
+            message.member.roles.remove(muterole).catch(() => {
+              message.channel.send('Je n\'ai pas pu enlever le role muted.').then((msg) => {
+                msg.delete({ timeout: 5000 })
+              })
+            })
             message.reply(`Vous avez été démute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
               msg.delete({ timeout: 5000 })
             })
