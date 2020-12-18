@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const modo_roles_schema = mongoose.Schema({
+const modoRolesSchema = mongoose.Schema({
   _id: {
     type: String,
-    required: true,
+    required: true
   },
   rolemodo: {
     type: String,
-    required: true,
-  },
-});
+    required: true
+  }
+})
 
-module.exports = mongoose.model("modo-roles-schema", modo_roles_schema);
+module.exports = mongoose.model('modo-roles-schema', modoRolesSchema)

@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 const fs = require('fs')
-
 const client = new Discord.Client()
 const config = require('./config.json')
+const usermap = new Map()
 
 client.config = config // Acceder
 
@@ -104,4 +104,32 @@ module.exports.getmembersbyroles = function (role, message) {
   }
 }
 
+module.exports.usermap = usermap
+
+module.exports.mute = async function (client, message, member) {
+  let muterole = message.guild.roles.cache.find(role => role.name === 'muted')
+  if (!muterole) {
+    try {
+      muterole = await message.guild.roles.create({ data: { name: 'muted', permissions: [] } })
+      message.guild.channels.cache.forEach(async (channel, id) => {
+        await channel.createOverwrite(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        })
+      })
+    } catch (e) {
+      console.log(e)
+      message.channel
+        .send('**⚠️ Je n\'ai pas la permission modifier les salons et/ou de créer des roles. ⚠️** ')
+        .then((msg) => {
+          msg.delete({ timeout: 5000 })
+        })
+    }
+  }
+  member.roles.add(muterole)
+  message.reply(`Vous avez été mute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
+    msg.delete({ timeout: 5000 })
+  })
+  return muterole
+}
 client.login(config.token)

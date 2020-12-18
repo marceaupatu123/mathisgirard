@@ -5,10 +5,10 @@ const reportschema = mongoose.Schema({
     type: String,
     required: true
   },
-  channelID: {
-    type: String,
+  mute: {
+    type: Boolean,
     required: true
   }
 })
 
-module.exports = mongoose.model('reportschannels', reportschema)
+module.exports = mongoose.model('reports-channels', reportschema)
