@@ -19,7 +19,8 @@ module.exports = async (client, message) => {
     }
   })
   if (tocheck) {
-    if (!message.guild.roles.cache.find(role => role.name === 'muted')) {
+    const 
+    if (!message.member.roles.cache.has(message.guild.roles.cache.find(role => role.name === 'muted'))) {
       if (usermap.has(message.author.id)) {
         const userData = usermap.get(message.author.id)
         const { lastMessage, timer } = userData
