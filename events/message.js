@@ -6,7 +6,7 @@ module.exports = async (client, message) => {
     .slice(client.config.prefix.length)
     .trim()
     .split(/ +/);
-  const commande = args.shift();
+  const commande = args.shift().toLowerCase();
   const cmd = client.commands.get(commande);
 
   if (!cmd) return;
