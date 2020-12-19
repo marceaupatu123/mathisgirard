@@ -72,14 +72,14 @@ exports.run = async (client, message, args) => {
           { _id: message.guild.id, channelID: chan },
           { upsert: true }
         );
-        return message.channel
+         message.channel
           .send("**Setup fait avec succès ✅** ")
           .then((msg) => {
             message.delete({ timeout: 300 });
             msg.delete({ timeout: 5000 });
           });
       } catch (error) {
-        return message.channel.send(`**ERROR : ${error}** `).then((msg) => {
+         message.channel.send(`**ERROR : ${error}** `).then((msg) => {
           message.delete({ timeout: 300 });
           msg.delete({ timeout: 5000 });
         });
@@ -108,14 +108,14 @@ exports.run = async (client, message, args) => {
           { _id: message.guild.id, rolemodo: role },
           { upsert: true }
         );
-        return message.channel
+         message.channel
           .send("**Setup fait avec succès ✅** ")
           .then((msg) => {
             message.delete({ timeout: 300 });
             msg.delete({ timeout: 5000 });
           });
       } catch (error) {
-        return message.channel.send(`**ERROR : ${error}** `).then((msg) => {
+         message.channel.send(`**ERROR : ${error}** `).then((msg) => {
           message.delete({ timeout: 300 });
           msg.delete({ timeout: 5000 });
         });
@@ -124,28 +124,8 @@ exports.run = async (client, message, args) => {
       }
     });
   } else if (type === "antispam") {
-    let tocheck = false;
-    await mongo().then(async (mongoose) => {
-      // https://www.youtube.com/watch?v=A1VRitCjL6Y 10:24
-      try {
-        const guildID = message.guild.id;
-
-        const result = await muteschema.findOne({ _id: guildID });
-        tocheck = result.mute;
-      } catch (error) {
-        tocheck = false;
-      } finally {
-        mongoose.connection.close();
-      }
-    });
+    let tocheck = true
     if (!tocheck) {
-      await mongo().then(async (mongoose) => {
-        try {
-          await muteschema.findOneAndUpdate(
-            { _id: message.guild.id },
-            { _id: message.guild.id, mute: true },
-            { upsert: true }
-          );
           let muterole = message.guild.roles.cache.find(
             (role) => role.name === "muted"
           );
@@ -171,44 +151,19 @@ exports.run = async (client, message, args) => {
                 });
             }
           }
-          return message.channel
+           message.channel
             .send("**Le mode anti spam a été activé✅** ")
             .then((msg) => {
               message.delete({ timeout: 300 });
               msg.delete({ timeout: 5000 });
             });
-        } catch (error) {
-          return message.channel.send(`**ERROR : ${error}** `).then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
-        } finally {
-          mongoose.connection.close();
-        }
-      });
     } else {
-      await mongo().then(async (mongoose) => {
-        try {
-          await muteschema.findOneAndUpdate(
-            { _id: message.guild.id },
-            { _id: message.guild.id, mute: false },
-            { upsert: true }
-          );
-          return message.channel
+           message.channel
             .send("**Le mode anti spam a été désactivé ❌** ")
             .then((msg) => {
               message.delete({ timeout: 300 });
               msg.delete({ timeout: 5000 });
             });
-        } catch (error) {
-          return message.channel.send(`**ERROR : ${error}** `).then((msg) => {
-            message.delete({ timeout: 300 });
-            msg.delete({ timeout: 5000 });
-          });
-        } finally {
-          mongoose.connection.close();
-        }
-      });
     }
   }
 };
