@@ -124,7 +124,7 @@ exports.run = (client, message, args) => {
     } else {
       return message.channel
         .send(
-          '⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **cmpc**, **cr**, **co** ⚠️ '
+          '⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **iga** ⚠️ '
         )
         .then((msg) => {
           message.delete({ timeout: 300 })

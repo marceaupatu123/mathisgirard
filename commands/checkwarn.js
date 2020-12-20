@@ -117,7 +117,7 @@ exports.run = async (client, message, args) => {
             `${message.guild.iconURL({ format: "png" })}`
           )
           .setColor(16729600)
-          .setDescription(`**l'Utilisateur à ${counter} avertissement(s**\n\n${reply}`)
+          .setDescription(`**l'Utilisateur à ${counter} avertissement(s)**\n\n${reply}`)
           .setFooter(
             "Vive les modérateurs",
             "https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png"
