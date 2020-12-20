@@ -1,10 +1,8 @@
 const { usermap, mute } = require('../main')
-const mongo = require('../mongo')
-const muteschema = require('../schemas/mute-schema')
 
 module.exports = async (client, message) => {
   if (message.author.bot) return
- let tocheck = true
+  const tocheck = true
   if (tocheck) {
     const LIMIT = 3
     const TIME = 3000
