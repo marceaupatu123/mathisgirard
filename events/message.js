@@ -6,9 +6,9 @@ module.exports = async (client, message) => {
   if (message.author.bot) return
  let tocheck = true
   if (tocheck) {
-    const LIMIT = 5
-    const TIME = 5000
-    const DIFF = 5000
+    const LIMIT = 3
+    const TIME = 3000
+    const DIFF = 3000
     if (usermap.has(message.author.id)) {
       const userData = usermap.get(message.author.id)
       const { lastMessage, timer } = userData
