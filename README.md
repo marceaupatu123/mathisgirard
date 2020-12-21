@@ -33,7 +33,7 @@ Alcatraz a beaucoup de fonctionnalités, avec **12 catégories principales**:
 
 *   👩‍💼 **Administration**: `setup`
 *   🚓 **Modération**: `clear`, `warn`
-*   ⭐ **Utile**: `checkwarn, `report`, `ping`
+*   ⭐ **Utile**: `checkwarn`, `report`, `ping`
 *   👑 **La France Libre**: `conseil`
 
 ## Lien utiles
