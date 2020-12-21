@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Alcatraz" src="https://cdn.discordapp.com/avatars/598180445422747651/ff47e1e276ed4d65ad17a9b5089990ea.png">  
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Mathis" src="https://i.gyazo.com/525e603ab72bd2cb593215610b6cf612.png">  
 
 # Alcatraz
 
