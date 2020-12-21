@@ -1,6 +1,6 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Mathis" src="https://i.gyazo.com/525e603ab72bd2cb593215610b6cf612.png">  
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Mathis Girard" src="https://i.gyazo.com/525e603ab72bd2cb593215610b6cf612.png">  
 
-# Alcatraz
+# Mathis Girard
 
 [![](https://img.shields.io/discord/766318515619102730.svg?logo=discord&colorB=7289DA)](https://discord.gg/aGP5kvxFEc)
 [![](https://img.shields.io/badge/discord.js-v12.4.1-blue.svg?logo=npm)](https://discord.js.org/)
