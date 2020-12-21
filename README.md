@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Alcatraz" src="https://i.imgur.com/cZkBm9I.png">  
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Alcatraz" src="https://cdn.discordapp.com/avatars/598180445422747651/ff47e1e276ed4d65ad17a9b5089990ea.png">  
 
 # Alcatraz
 
