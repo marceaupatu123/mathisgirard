@@ -223,7 +223,7 @@ exports.run = async (client, message, args) => {
       })
   } else {
     message.channel
-      .send(`**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role ${message.member.roles.cache.get(tocheck).name}*`)
+      .send(`**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role "${message.guild.roles.cache.get(tocheck).name}"*`)
       .then((msg) => {
         message.delete({
           timeout: 300
