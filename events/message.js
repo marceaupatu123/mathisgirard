@@ -87,7 +87,7 @@ module.exports = async (client, message) => {
             } catch (err) {
               console.log(err)
             }
-          }, 10000)
+          }, 300000)
         } else {
           userData.msgCount = msgCount
           usermap.set(message.author.id, userData)
