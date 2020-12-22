@@ -1,6 +1,7 @@
 const { usermap, mute } = require('../main')
 const mongo = require('../mongo')
 const warnSchema = require('../schemas/warn-schema')
+const mutedb = require('../json/mute.json')
 
 function makeid (length) {
   let result = ''
@@ -14,7 +15,12 @@ function makeid (length) {
 
 module.exports = async (client, message) => {
   if (message.author.bot) return
-  const tocheck = true
+  let tocheck = true
+  if (!mutedb[message.channel.guild.id]) {
+    tocheck = true
+  } else {
+    tocheck = mutedb[message.channel.guild.id].status
+  }
   if (tocheck) {
     const LIMIT = 3
     const TIME = 3000
