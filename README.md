@@ -2,15 +2,9 @@
 
 # Mathis Girard
 
-<!-- [![](https://img.shields.io/discord/766318515619102730.svg?logo=discord&colorB=7289DA)](https://discord.gg/aGP5kvxFEc)
-[![](https://img.shields.io/badge/discord.js-v12.4.1-blue.svg?logo=npm)](https://discord.js.org/)
-[![](https://img.shields.io/badge/nodejs-14.15.0-green.svg)](https://www.nodejs.org)
-[![](https://img.shields.io/badge/patreon-donation-orange.svg)](https://www.patreon.com/AlcatrazBot)
-[![](https://www.codefactor.io/repository/gitlab/galackqsm/alcatraz/badge)](https://www.codefactor.io/repository/gitlab/galackqsm/Alcatraz)
-[![](https://top.gg/api/widget/status/774652242787041310.svg)](https://top.gg/bot/774652242787041310)
-[![](https://top.gg/api/widget/upvotes/774652242787041310.svg)](https://top.gg/bot/774652242787041310)
-[![](https://top.gg/api/widget/servers/774652242787041310.svg)](https://top.gg/bot/774652242787041310)
-[![](https://top.gg/api/widget/owner/774652242787041310.svg)](https://top.gg/bot/774652242787041310) -->
+[![](https://img.shields.io/discord/606939452425633802.svg?logo=discord&colorB=7289DA)](https://discord.gg/vF2H5TzF6g)
+[![](https://img.shields.io/badge/discord.js-v12.5.1-blue.svg?logo=npm)](https://discord.js.org/)
+
 
 > Ce bot est sous licence privée le temps du développement et pourra surrement devenir open-source.
 
@@ -38,8 +32,6 @@ Alcatraz a beaucoup de fonctionnalités, avec **12 catégories principales**:
 
 ## Lien utiles
 
-*   [Discord](https://discord.gg/aGP5kvxFEc)
-*   [Github](https://github.com/GalackQSM/Alcatraz)
-*   [Donation](https://www.patreon.com/AlcatrazBot)
+*   [Discord]https://discord.gg/vF2H5TzF6g)
 *   [Avis](https://fr.trustpilot.com/review/alcatraz-bot.com)
 
