@@ -3,7 +3,7 @@ const functiontools = require('../main')
 const warnSchema = require('../schemas/warn-schema')
 const Discord = require('discord.js')
 
- exports.run = async (client, message, args) => {
+exports.run = async (client, message, args) => {
   if (message.channel.type === 'dm') {
     return message.channel
       .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
