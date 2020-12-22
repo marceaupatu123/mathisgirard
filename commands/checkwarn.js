@@ -62,7 +62,7 @@ exports.run = async (client, message, args) => {
           .setTitle(`Avertissement "${ticket2}"`)
           .setAuthor(
             `${message.guild.name}`,
-            `${message.guild.iconURL({ format: 'png' })}`
+            `${message.guild.iconURL({ format: 'png' }) || 'https://i.gyazo.com/31bc9eb5602cbf58f360d46d3c8e5534.gif'}`
           )
           .setColor(16729600)
           .setDescription(reply)
@@ -114,7 +114,7 @@ exports.run = async (client, message, args) => {
           .setTitle(`Avertissement(s) de ${message.guild.members.cache.get(results.memberID).displayName}`)
           .setAuthor(
             `${message.guild.name}`,
-            `${message.guild.iconURL({ format: 'png' })}`
+            `${message.guild.iconURL({ format: 'png' }) || 'https://i.gyazo.com/31bc9eb5602cbf58f360d46d3c8e5534.gif'}`
           )
           .setColor(16729600)
           .setDescription(`**l'Utilisateur à ${counter} avertissement(s)**\n\n${reply}`)
