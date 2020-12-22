@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
       })
   }
   if (!args[0] || !args[1]) {
-    return message.channel
+     return message.channel
       .send(
         '**⚠️ Vérifier votre commande `conseil [type] [mention+ ou channel] [phrase]` ⚠️** '
       )
