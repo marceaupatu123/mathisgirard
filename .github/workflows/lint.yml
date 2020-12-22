@@ -1,4 +1,4 @@
-name: Eslint Checker
+name: Node CI environment
 
 on: [pull_request]
 
