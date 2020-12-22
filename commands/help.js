@@ -6,7 +6,7 @@ exports.run = (client, message) => {
     .setTitle(`Commande ${message.author.username}`)
     .setAuthor(
       'Listes des commandes',
-      'https://dzcharikati.net/wp-content/uploads/2019/08/scales-of-justice-logo.jpg'
+      message.channel.guild.avatarURL({ format: 'png' }) || 'https://i.gyazo.com/31bc9eb5602cbf58f360d46d3c8e5534.gif'
     )
     .setColor('RANDOM')
     .addFields(
