@@ -1,4 +1,4 @@
-name: Lint
+name: Eslint Checker
 
 on: [pull_request]
 
