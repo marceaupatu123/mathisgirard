@@ -78,7 +78,7 @@ exports.run = (client, message, args) => {
       return
     }
 
-    if (toString(type) === 'iga') {
+    if (type === 'iga') {
       if (!message.member.roles.cache.has('789437217303035915')) {
         message.channel
           .send("**Tu n'as pas la permission de faire ça** ⛔️ ")
