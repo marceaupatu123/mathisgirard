@@ -1,4 +1,4 @@
-ame: Lint
+name: Other Eslint Linter
 on: [push]
 jobs:
   eslint_check:
@@ -12,6 +12,6 @@ jobs:
       uses: Krizzu/eslint-check-action@v1.1.0
       with:
         ghToken: ${{ secrets.GITHUB_TOKEN }}
-        eslintFiles: "commands, events",
-        eslintConfig: ".eslintrc.yml",
+        eslintFiles: "commands, events"
+        eslintConfig: ".eslintrc.yml"
         eslintExt: "js"
