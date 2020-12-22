@@ -1,4 +1,4 @@
-ame: Lint
+name: Lint
 on: [pull_request]
 jobs:
   eslint_check:
