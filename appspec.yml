@@ -38,7 +38,7 @@ files:
 permissions:
   - object: /
     pattern: "**"
-    except: [config.json]
+    except: config.json
     owner: ec2-user
     group: ec2-user 
     mode: 777
