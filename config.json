@@ -1,5 +1,5 @@
 {
 	"prefix": "/",
-	"token": "NTk4MTgwNDQ1NDIyNzQ3NjUx.XSS48w.hBN4FLj48Cwr7hO3JDG4d3Iy7do",
-	"mongoPath": "mongodb+srv://discordbot:81N1jS8zIOW7nlFL@cluster0.gkl6z.mongodb.net/the-bot-db?retryWrites=true&w=majority"
+	"token": "TOKEN",
+	"mongoPath": "MONGO DB LINK"
 }
