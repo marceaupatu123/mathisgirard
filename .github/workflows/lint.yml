@@ -27,10 +27,6 @@ jobs:
           NPM_READONLY_AUTH_TOKEN: ${{ secrets.NPM_READONLY_AUTH_TOKEN }}
 
       - name: npm install
-<<<<<<< HEAD
-        working-directory: ./application
-=======
->>>>>>> parent of f485a0b (🖨️ Change lint script)
         run: npm i --ignore-scripts
 
       - name: Run ESLint
