@@ -52,11 +52,12 @@ exports.run = async (client, message, args) => {
         let reply = ''
 
         for (const warns of results.warnings) {
-          const { author, timestamp, raison } = warns
-
-          reply += `Avertissement fait par <@${author}> le **${new Date(timestamp).toLocaleDateString('fr-FR', options)}** à <@${
+          const { author, timestamp, raison, ticket } = warns
+          if (ticket === args[0]) {
+            reply += `Avertissement fait par <@${author}> le **${new Date(timestamp).toLocaleDateString('fr-FR', options)}** à <@${
             results.memberID
           }> pour **"${raison}"**\n\n`
+          }
         }
         const embed = new Discord.MessageEmbed()
           .setTitle(`Avertissement "${ticket2}"`)
