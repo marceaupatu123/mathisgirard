@@ -9,6 +9,7 @@
 > Ce bot est sous licence privée le temps du développement et pourra surrement devenir open-source.
 
 Mathis Girard est un bot Discord codé en JavaScript avec [Discord.js](https://discord.js.org) et [mongodb](https://www.mongodb.com/fr) par [marceaupatu123](https://github.com/marceaupatu123).  
+
 N'hésitez pas à ajouter une étoile ⭐ au référentiel pour promouvoir le projet!
 ## Informations
 
