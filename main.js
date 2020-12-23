@@ -3,6 +3,8 @@ const fs = require('fs')
 const client = new Discord.Client()
 const config = require('./config.json')
 const usermap = new Map()
+const mongo = require('./mongo')
+const warnSchema = require('./schemas/warn-schema')
 
 client.config = config // Acceder
 
@@ -64,7 +66,9 @@ module.exports.getMoreUsersFromMention = function (mention, message) {
     mention = mention.split(',')
     const array = []
     mention.forEach((element) => {
-      if (this.getUserFromMention(element, message) !== undefined) { array.push(this.getUserFromMention(element, message)) }
+      if (this.getUserFromMention(element, message) !== undefined) {
+        array.push(this.getUserFromMention(element, message))
+      }
     })
     return array
   } else {
@@ -100,11 +104,15 @@ module.exports.getmembersbyroles = function (role, message) {
 module.exports.usermap = usermap
 
 module.exports.mute = async function (client, message, member) {
-  let muterole = message.guild.roles.cache.find(role => role.name === 'muted')
+  let muterole = message.guild.roles.cache.find(
+    (role) => role.name === 'muted'
+  )
   if (!muterole) {
     try {
-      muterole = await message.guild.roles.create({ data: { name: 'muted', permissions: [] } })
-      message.guild.channels.cache.forEach(async (channel, id) => {
+      muterole = await message.guild.roles.create({
+        data: { name: 'muted', permissions: [] }
+      })
+      message.guild.channels.cache.forEach(async (channel) => {
         await channel.createOverwrite(muterole, {
           SEND_MESSAGES: false,
           ADD_REACTIONS: false
@@ -113,7 +121,9 @@ module.exports.mute = async function (client, message, member) {
     } catch (e) {
       console.log(e)
       message.channel
-        .send('**⚠️ Je n\'ai pas la permission modifier les salons et/ou de créer des roles. ⚠️** ')
+        .send(
+          "**⚠️ Je n'ai pas la permission modifier les salons et/ou de créer des roles. ⚠️** "
+        )
         .then((msg) => {
           msg.delete({ timeout: 5000 })
         })
@@ -121,5 +131,143 @@ module.exports.mute = async function (client, message, member) {
   }
   member.roles.add(muterole)
   return muterole
+}
+
+module.exports.warn = async function (
+  client,
+  message,
+  qui,
+  raison,
+  author = message.member.user.id
+) {
+  if (Array.isArray(qui) === true) {
+    qui.forEach(async (element) => {
+      const guildID = message.guild.id
+      const memberID = element.id
+      let ticket = ''
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+      const charactersLength = characters.length
+      for (let i = 0; i < 6; i++) {
+        ticket += characters.charAt(Math.floor(Math.random() * charactersLength))
+      }
+      const warning = {
+        author,
+        timestamp: new Date().getTime(),
+        ticket,
+        raison
+      }
+      let tocheck = true
+
+      await mongo().then(async (mongoose) => {
+        try {
+          await warnSchema.findOneAndUpdate(
+            {
+              guildID,
+              memberID
+            },
+            {
+              guildID,
+              memberID,
+              $push: {
+                warnings: warning
+              }
+            },
+            {
+              upsert: true
+            }
+          )
+        } catch (error) {
+          tocheck = false
+        } finally {
+          mongoose.connection.close()
+        }
+      })
+
+      if (tocheck === false) return false
+
+      const embed = new Discord.MessageEmbed()
+        .setTitle(`Avertissement ${ticket}`)
+        .setAuthor(
+          `${message.guild.name}`,
+          `${message.guild.iconURL({ format: 'png' })}`
+        )
+        .setColor(16729600)
+        .setDescription(`Vous venez d'être averti : **${raison}**`)
+        .setFooter(
+          'Veillez à ne pas être trop averti',
+          'https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png'
+        )
+        .setImage(
+          'https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1'
+        )
+        .setTimestamp()
+
+      element.send(embed)
+    })
+    return true
+  } else {
+    const guildID = message.guild.id
+    const memberID = qui.id
+    let ticket = ''
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    const charactersLength = characters.length
+    for (let i = 0; i < 6; i++) {
+      ticket += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+    const warning = {
+      author,
+      timestamp: new Date().getTime(),
+      ticket,
+      raison
+    }
+    let tocheck = true
+
+    await mongo().then(async (mongoose) => {
+      try {
+        await warnSchema.findOneAndUpdate(
+          {
+            guildID,
+            memberID
+          },
+          {
+            guildID,
+            memberID,
+            $push: {
+              warnings: warning
+            }
+          },
+          {
+            upsert: true
+          }
+        )
+      } catch (error) {
+        tocheck = false
+      } finally {
+        mongoose.connection.close()
+      }
+    })
+
+    if (tocheck === false) return false
+
+    const embed = new Discord.MessageEmbed()
+      .setTitle(`Avertissement ${ticket}`)
+      .setAuthor(
+        `${message.guild.name}`,
+        `${message.guild.iconURL({ format: 'png' })}`
+      )
+      .setColor(16729600)
+      .setDescription(`Vous venez d'être averti : **${raison}**`)
+      .setFooter(
+        'Veillez à ne pas être trop averti',
+        'https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png'
+      )
+      .setImage(
+        'https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1'
+      )
+      .setTimestamp()
+
+    qui.send(embed)
+    return true
+  }
 }
 client.login(config.token)

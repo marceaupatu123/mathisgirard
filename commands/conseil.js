@@ -30,7 +30,7 @@ exports.run = (client, message, args) => {
   const guildavatar = message.guild.iconURL({ format: 'png' })
   const author = message.author
   const logscmpc = message.guild.channels.cache.get('789476900052795392')
-  const covid = client.guilds.cache.get('789429664149274664')
+  const covid = client.guilds.cache.get('789429664149274664') || 'La France Libre'
 
   if (message.guild.id === covid.id) {
     // Check variable
@@ -138,7 +138,7 @@ exports.run = (client, message, args) => {
   } else {
     return message.channel
       .send(
-        `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name}** ⚠️`
+        `⚠️ **Vous ne pouvez pas faire cette commande dans un serveur autre que ${covid.name || 'La France Libre'}** ⚠️`
       )
       .then((msg) => {
         message.delete({ timeout: 300 })

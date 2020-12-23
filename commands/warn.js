@@ -1,18 +1,6 @@
 const mongo = require('../mongo')
 const functiontools = require('../main')
-const warnSchema = require('../schemas/warn-schema')
 const modoschema = require('../schemas/modo-roles-schema')
-const Discord = require('discord.js')
-
-function makeid (length) {
-  let result = ''
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-  const charactersLength = characters.length
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
-}
 
 exports.run = async (client, message, args) => {
   let tocheck = true
@@ -99,117 +87,8 @@ exports.run = async (client, message, args) => {
         })
       return
     }
-    if (Array.isArray(qui) === true) {
-      qui.forEach(async (element) => {
-        const raison = args.slice(1).join(' ')
-        const guildID = message.guild.id
-        const memberID = element.id
-        const ticket = makeid(6)
-        const warning = {
-          author: message.member.user.id,
-          timestamp: new Date().getTime(),
-          ticket,
-          raison
-        }
-        let tocheck = true
-
-        await mongo().then(async (mongoose) => {
-          try {
-            await warnSchema.findOneAndUpdate({
-              guildID,
-              memberID
-            }, {
-              guildID,
-              memberID,
-              $push: {
-                warnings: warning
-              }
-            }, {
-              upsert: true
-            })
-          } catch (error) {
-            tocheck = false
-          } finally {
-            mongoose.connection.close()
-          }
-        })
-
-        if (tocheck === false) return
-
-        const embed = new Discord.MessageEmbed()
-          .setTitle(`Avertissement ${ticket}`)
-          .setAuthor(
-        `${message.guild.name}`,
-        `${message.guild.iconURL({ format: 'png' })}`
-          )
-          .setColor(16729600)
-          .setDescription(`Vous venez d'être averti : **${raison}**`)
-          .setFooter(
-            'Veillez à ne pas être trop averti',
-            'https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png'
-          )
-          .setImage(
-            'https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1'
-          )
-          .setTimestamp()
-
-        element.send(embed)
-      })
-    } else {
-      const raison = args.slice(1).join(' ')
-      const guildID = message.guild.id
-      const memberID = qui.id
-      const ticket = makeid(6)
-      const warning = {
-        author: message.member.user.id,
-        timestamp: new Date().getTime(),
-        ticket,
-        raison
-      }
-      let tocheck = true
-
-      await mongo().then(async (mongoose) => {
-        try {
-          await warnSchema.findOneAndUpdate({
-            guildID,
-            memberID
-          }, {
-            guildID,
-            memberID,
-            $push: {
-              warnings: warning
-            }
-          }, {
-            upsert: true
-          })
-        } catch (error) {
-          tocheck = false
-        } finally {
-          mongoose.connection.close()
-        }
-      })
-
-      if (tocheck === false) return
-
-      const embed = new Discord.MessageEmbed()
-        .setTitle(`Avertissement ${ticket}`)
-        .setAuthor(
-        `${message.guild.name}`,
-        `${message.guild.iconURL({ format: 'png' })}`
-        )
-        .setColor(16729600)
-        .setDescription(`Vous venez d'être averti : **${raison}**`)
-        .setFooter(
-          'Veillez à ne pas être trop averti',
-          'https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png'
-        )
-        .setImage(
-          'https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1'
-        )
-        .setTimestamp()
-
-      qui.send(embed)
-    }
+    const raison = args.slice(1).join(' ')
+    functiontools.warn(client, message, qui, raison)
 
     return message.channel
       .send(`**${emojisiren} Infraction Enregistré ${emojisiren}**`)

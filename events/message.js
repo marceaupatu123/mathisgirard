@@ -1,17 +1,6 @@
 const { usermap, mute } = require('../main')
-const mongo = require('../mongo')
-const warnSchema = require('../schemas/warn-schema')
+const functiontools = require('../main.js')
 const mutedb = require('../json/mute.json')
-
-function makeid (length) {
-  let result = ''
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-  const charactersLength = characters.length
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
-}
 
 module.exports = async (client, message) => {
   if (message.author.bot) return
@@ -47,36 +36,7 @@ module.exports = async (client, message) => {
             msg.delete({ timeout: 5000 })
           })
           const raison = "Mute de l'antispam"
-          const guildID = message.guild.id
-          const memberID = message.member.id
-          const ticket = makeid(6)
-          const warning = {
-            author: client.user,
-            timestamp: new Date().getTime(),
-            ticket,
-            raison
-          }
-
-          await mongo().then(async (mongoose) => {
-            try {
-              await warnSchema.findOneAndUpdate({
-                guildID,
-                memberID
-              }, {
-                guildID,
-                memberID,
-                $push: {
-                  warnings: warning
-                }
-              }, {
-                upsert: true
-              })
-            } catch (error) {
-              console.log(error)
-            } finally {
-              mongoose.connection.close()
-            }
-          })
+          functiontools.warn(client, message, message.member, raison, client.user)
           setTimeout(async () => {
             try {
               message.member.roles.remove(muterole)

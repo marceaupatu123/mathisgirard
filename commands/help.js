@@ -1,6 +1,6 @@
 exports.run = (client, message) => {
   const Discord = require('discord.js')
-  const covid = client.guilds.cache.get('789429664149274664')
+  const covid = client.guilds.cache.get('789429664149274664') || 'La France Libre'
 
   const embed = new Discord.MessageEmbed()
     .setTitle(`Commande ${message.author.username}`)
@@ -26,7 +26,7 @@ exports.run = (client, message) => {
         inline: true
       },
       {
-        name: `Commandes de "${covid.name}"`,
+        name: `Commandes de "${covid.name || 'La France Libre'}"`,
         value:
           "`Conseil` : **[COMPATIBLE MENTION+]** Permet de faire un mesage à envoyer à une personne ou un channel en tant que membre d'un conseil."
       }
