@@ -2,3 +2,5 @@
 config.js
 # Node
 node_modules/
+# json
+json/
