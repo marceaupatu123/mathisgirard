@@ -11,4 +11,4 @@ const modoRolesSchema = mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('modo-roles-schema', modoRolesSchema)
+module.exports = mongoose.model('warn-roles-schema', modoRolesSchema)
