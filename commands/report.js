@@ -3,7 +3,7 @@ const schemareports = require('../schemas/reports-channel-schema')
 const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
-  if (message.channel.type === 'dm') {
+   if (message.channel.type === 'dm') {
     return message.channel
       .send("**⚠️ Cette commande ne peut pas s'effectuer en DM ⚠️** ")
       .then((msg) => {
