@@ -15,7 +15,7 @@ N'hésitez pas à ajouter une étoile ⭐ au référentiel pour promouvoir le pr
 
 ### Bot complet
 
-Offres de Alcatraz:
+Offres de Mathis Girard:
 * 💥 Un bot 100% Français.
 * 💯 Un bot modulable pour la création de commandes.
 * 🌐 Des commandes en tout genre....
@@ -24,7 +24,7 @@ Offres de Alcatraz:
 
 ### Les commandes
 
-Alcatraz a beaucoup de fonctionnalités, avec **12 catégories principales**:
+Mathis Girard a beaucoup de fonctionnalités, avec **4 catégories principales**:
 
 *   👩‍💼 **Administration**: `setup`
 *   🚓 **Modération**: `clear`, `warn`
