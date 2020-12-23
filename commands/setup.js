@@ -1,6 +1,7 @@
 const mongo = require('../mongo')
 const schemareports = require('../schemas/reports-channel-schema')
-const modoschema = require('../schemas/modo-roles-schema')
+const modoschema = require('../schemas/warn-roles-schema')
+const muteschema = require('../schemas/mute-roles-schema')
 const mutedb = require('../json/mute.json')
 const fs = require('fs')
 
@@ -38,10 +39,10 @@ exports.run = async (client, message, args) => {
       })
   }
   // Check type
-  if (type !== 'report' && type !== 'warnrole' && type !== 'antispam') {
+  if (type !== 'report' && type !== 'warnrole' && type !== 'antispam' && type !== 'muterole') {
     return message.channel
       .send(
-        '**⚠️ Configuration Incorrecte, config dispo: `report, warnrole, antispam`⚠️** '
+        '**⚠️ Configuration Incorrecte, config dispo: `report, warnrole, antispam, muterole`⚠️** '
       )
       .then((msg) => {
         message.delete({ timeout: 300 })
@@ -74,7 +75,7 @@ exports.run = async (client, message, args) => {
           { upsert: true }
         )
         message.channel
-          .send('**Setup fait avec succès ✅** ')
+          .send('**Le setup du channel report est fait avec succès ✅** ')
           .then((msg) => {
             message.delete({ timeout: 300 })
             msg.delete({ timeout: 5000 })
@@ -110,7 +111,7 @@ exports.run = async (client, message, args) => {
           { upsert: true }
         )
         message.channel
-          .send('**Setup fait avec succès ✅** ')
+          .send('**Le setup du role qui peut warn a été fait avec succès ✅** ')
           .then((msg) => {
             message.delete({ timeout: 300 })
             msg.delete({ timeout: 5000 })
@@ -183,6 +184,42 @@ exports.run = async (client, message, args) => {
           msg.delete({ timeout: 5000 })
         })
     }
+  } else if (type === 'muterole') {
+    let role
+    try {
+      role = message.mentions.roles.first().id
+    } catch (error) {
+      role = undefined
+    }
+    // Check Channel
+    if (role === undefined) {
+      return message.channel.send('**⚠️ Role Introuvable ⚠️** ').then((msg) => {
+        message.delete({ timeout: 300 })
+        msg.delete({ timeout: 5000 })
+      })
+    }
+    await mongo().then(async (mongoose) => {
+      try {
+        await muteschema.findOneAndUpdate(
+          { _id: message.guild.id },
+          { _id: message.guild.id, rolemodo: role },
+          { upsert: true }
+        )
+        message.channel
+          .send('**Le setup du role qui peut mute est fait avec succès ✅** ')
+          .then((msg) => {
+            message.delete({ timeout: 300 })
+            msg.delete({ timeout: 5000 })
+          })
+      } catch (error) {
+        message.channel.send(`**ERROR : ${error}** `).then((msg) => {
+          message.delete({ timeout: 300 })
+          msg.delete({ timeout: 5000 })
+        })
+      } finally {
+        mongoose.connection.close()
+      }
+    })
   }
 }
 

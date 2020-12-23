@@ -1,6 +1,6 @@
 const mongo = require('../mongo')
 const functiontools = require('../main')
-const modoschema = require('../schemas/modo-roles-schema')
+const modoschema = require('../schemas/warn-roles-schema')
 
 exports.run = async (client, message, args) => {
   let tocheck = true
