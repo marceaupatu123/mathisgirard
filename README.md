@@ -6,7 +6,7 @@
 [![](https://img.shields.io/badge/discord.js-v12.5.1-blue.svg?logo=npm)](https://discord.js.org/)
 
 
-> Ce bot est sous licence privée le temps du développement et pourra surrement devenir open-source.
+> Ce bot est opensource et sous license GPL-3.0 
 
 Mathis Girard est un bot Discord codé en JavaScript avec [Discord.js](https://discord.js.org) et [Mongoose](https://mongoosejs.com/) par [marceaupatu123](https://github.com/marceaupatu123).  
 
