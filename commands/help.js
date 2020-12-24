@@ -12,7 +12,7 @@ exports.run = (client, message) => {
     .addFields(
       {
         name: 'Modération',
-        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*\n`Warn` : **[COMPATIBLE MENTION+]** Permet de démute quelqu'un. *(Necessite un rôle particulier)*\n`Unmute` : **[COMPATIBLE MENTION+]** Permet de démute quelqu'un. *(Necessite un rôle particulier)*\n`mute` : **[COMPATIBLE MENTION+]** Permet de mute quelqu'un. *(Necessite un rôle particulier)*",
+        value: "`Clear` : Permet de supprimer un montant donné de messages. *(MANAGE_MESSAGES PERM)*\n`Warn` : **[COMPATIBLE MENTION+]** Permet de démute quelqu'un. *(Necessite un rôle particulier)*\n`Unmute` : **[COMPATIBLE MENTION+]** Permet de démute quelqu'un. *(Necessite un rôle particulier)*\n`Mute` : **[COMPATIBLE MENTION+]** Permet de mute quelqu'un. *(Necessite un rôle particulier)*",
         inline: true
       },
       {
