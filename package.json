@@ -1,6 +1,6 @@
 {
   "name": "discordbot",
-  "version": "v0.1-alpha",
+  "version": "1.0.0",
   "description": "my first discord bot",
   "main": "main.js",
   "scripts": {
