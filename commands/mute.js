@@ -29,6 +29,7 @@ exports.run = async (client, message, args) => {
         msg.delete({
           timeout: 5000
         })
+        message.delete()
       })
   }
   if (message.member.roles.cache.get(tocheck)) {
@@ -39,6 +40,7 @@ exports.run = async (client, message, args) => {
           msg.delete({
             timeout: 5000
           })
+          message.delete()
         })
     }
     if (!args[0] || !args[1]) {
@@ -48,6 +50,7 @@ exports.run = async (client, message, args) => {
           msg.delete({
             timeout: 5000
           })
+          message.delete()
         })
     }
     const qui = functiontools.getMoreUsersFromMention(args[0], message)
