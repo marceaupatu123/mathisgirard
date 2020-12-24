@@ -127,10 +127,22 @@ module.exports.mute = async function (client, message, member) {
         .then((msg) => {
           msg.delete({ timeout: 5000 })
         })
+      throw e
     }
   }
-  member.roles.add(muterole)
-  return muterole
+  try {
+    await member.roles.add(muterole)
+    return muterole
+  } catch (error) {
+    message.channel
+      .send(
+        '**Je n\'ai as la permission de de mettre le rôle "muted" 🤒 !**'
+      )
+      .then((msg) => {
+        msg.delete({ timeout: 5000 })
+      })
+    throw error
+  }
 }
 
 module.exports.warn = async function (
