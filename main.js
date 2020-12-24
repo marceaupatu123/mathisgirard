@@ -42,19 +42,20 @@ module.exports.getUserFromMention = function (
   if (all) {
     return message.mentions.members
   }
-
   if (mention.startsWith('<@') && mention.endsWith('>')) {
     mention = mention.slice(2, -1)
 
     if (mention.startsWith('!')) {
       mention = mention.slice(1)
     }
-    return client.users.cache.get(mention)
+    if (!message) {
+      return client.users.cache.get(mention)
+    }
   }
   if (message) {
     return message.guild.members.cache.find(
       (id) =>
-        id === mention ||
+        id.id === mention ||
         id.user.username.toLowerCase().startsWith(mention.toLowerCase()) ||
         id.displayName.toLowerCase().startsWith(mention.toLowerCase())
     )
