@@ -1,38 +1,47 @@
-name: Node CI environment
+name: Lint
 
-on: [pull_request]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branchers:
+      - master
+    paths:
+      - 'commands'
+      - 'events'
 
 jobs:
   lint:
+    name: ESLint
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
+    env:
+      CI: true
+      NODE_OPTIONS: --max-old-space-size=4096
 
     steps:
       - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: 'Setup Node'
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 12
 
-      - name: npm login
-        run:
-          npm config set //registry.npmjs.org/:_authToken=$NPM_READONLY_AUTH_TOKEN
-        env:
-          NPM_READONLY_AUTH_TOKEN: ${{ secrets.NPM_READONLY_AUTH_TOKEN }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: ${{ runner.os }}-yarn-
 
-      - name: npm install
-        # working-directory: ./
-        run: npm i --ignore-scripts
+      - name: Install dependencies
+        run: |
+          yarn -v
+          yarn --frozen-lockfile
 
       - name: Run ESLint
-        uses: ninosaurus/eslint-check@v5
-        with:
-          eslint-config-path: "./.eslintrc.yml"
-          custom-directory: "./"
-          repo-token: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          node -v
+          yarn lint
