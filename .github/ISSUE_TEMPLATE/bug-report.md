@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-**Décrivez le bug
+**Décrivez le bug**
 Une description claire et concise de ce qu'est le bug
 
 **Reproduire**
