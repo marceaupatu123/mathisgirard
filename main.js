@@ -146,7 +146,15 @@ module.exports.mute = async function (client, message, member) {
     throw error
   }
 }
-
+/**
+* Cette fonction permet de warn quelqu'un
+* @param {Discord.Client} client Un client discord
+* @param {Discord.Message} message un message
+* @param {String} qui N'importe quoi qui permet d'identifier un utilisateur
+* @param {String} raison Une raison de warn
+* @param {Discord.GuildMember} author Auteur du warn
+* @returns {Boolean} Retourne si le warn à fonctionné ou pas
+*/
 module.exports.warn = async function (
   client,
   message,
