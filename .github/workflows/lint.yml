@@ -33,6 +33,6 @@ jobs:
       - name: Run ESLint
         uses: ninosaurus/eslint-check@v5
         with:
-          eslint-config-path: ".eslintrc.yml"
+          eslint-config-path: "./.eslintrc.yml"
           custom-directory: "."
           repo-token: ${{secrets.GITHUB_TOKEN}}
