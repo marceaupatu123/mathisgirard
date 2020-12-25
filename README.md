@@ -11,6 +11,8 @@
 Mathis Girard est un bot Discord codé en JavaScript avec [Discord.js](https://discord.js.org) et [Mongoose](https://mongoosejs.com/) par [marceaupatu123](https://github.com/marceaupatu123).  
 
 N'hésitez pas à ajouter une étoile ⭐ au référentiel pour promouvoir le projet!
+
+Vous pouvez [ajouter le bot en cliquant ici](https://discord.com/oauth2/authorize?client_id=598180445422747651&permissions=8&scope=bot)
 ## Informations
 
 ### Bot complet
