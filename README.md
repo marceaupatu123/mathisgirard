@@ -27,7 +27,7 @@ Offres de Mathis Girard:
 Mathis Girard a beaucoup de fonctionnalités, avec **4 catégories principales**:
 
 *   👩‍💼 **Administration**: `setup`
-*   🚓 **Modération**: `clear`, `warn`
+*   🚓 **Modération**: `clear`, `warn`,`mute`,`unmute`
 *   ⭐ **Utile**: `checkwarn`, `report`, `ping`
 *   👑 **La France Libre**: `conseil`
 
