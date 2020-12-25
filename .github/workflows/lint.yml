@@ -1,38 +1,29 @@
-name: Node CI environment
+name: Lint
 
-on: [pull_request]
+on: pull_request
 
 jobs:
-  lint:
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+      - name: Check out Git repository
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 12
 
-      - name: npm login
-        run:
-          npm config set //registry.npmjs.org/:_authToken=$NPM_READONLY_AUTH_TOKEN
-        env:
-          NPM_READONLY_AUTH_TOKEN: ${{ secrets.NPM_READONLY_AUTH_TOKEN }}
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm install
 
-      - name: npm install
-        working-directory: ./application
-        run: npm i --ignore-scripts
-
-      - name: Run ESLint
-        uses: ninosaurus/eslint-check@v5
+      - name: Run linters
+        uses: wearerequired/lint-action@v1.7.0
         with:
-          eslint-config-path: "./application/assets/js/.eslintrc.json"
-          custom-directory: "./application"
-          repo-token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Enable linters
+          eslint: true
+        # prettier: true
