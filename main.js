@@ -1,5 +1,4 @@
 // Here is the main.js, be carrefull of other commands when editing here.
-// Test
 const Discord = require('discord.js')
 const fs = require('fs')
 const client = new Discord.Client()
@@ -108,7 +107,7 @@ module.exports.usermap = usermap
 
 module.exports.mute = async function (client, message, member) {
   let muterole = message.guild.roles.cache.find(
-    (role) => role.name === 'muted'
+    (role) => role.name === "muted"
   )
   if (!muterole) {
     try {
