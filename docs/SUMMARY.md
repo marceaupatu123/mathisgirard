@@ -1,4 +1,6 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Introduction](README.md)
+* [F.A.Q](f.a.q.md)
+* [Main.js](main.js.md)
 
