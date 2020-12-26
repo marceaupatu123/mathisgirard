@@ -6,10 +6,6 @@ description: >-
 
 # Introduction
 
-
-
-## Mathis Girard
-
 ![Mathis Girard](https://i.gyazo.com/525e603ab72bd2cb593215610b6cf612.png)
 
 ### Mathis Girard
