@@ -39,6 +39,7 @@ fs.readdir('./commands', (err, files) => {
 * @param {Discord.Message} message un message
 * @returns {Discord.GuildMember} Retourne un membre
 */
+
 module.exports.getUserFromMention = function (
   mention,
   message = false,
@@ -93,6 +94,7 @@ module.exports.getMoreUsersFromMention = function (mention, message) {
 * @param {String} role Un Channel
 * @returns {Discord.Channel} Retourne un channel
 */
+
 module.exports.getChannelFromMention = function (mention) {
   if (!mention) return false
 
@@ -166,9 +168,7 @@ module.exports.mute = async function (client, message, member) {
     return muterole
   } catch (error) {
     message.channel
-      .send(
-        '**Je n\'ai as la permission de de mettre le rôle "muted" 🤒 !**'
-      )
+      .send('**Je n\'ai as la permission de de mettre le rôle "muted" 🤒 !**')
       .then((msg) => {
         msg.delete({ timeout: 5000 })
       })
@@ -184,6 +184,7 @@ module.exports.mute = async function (client, message, member) {
 * @param {Discord.GuildMember} author Auteur du warn
 * @returns {Boolean} Retourne si le warn à fonctionné ou pas
 */
+
 module.exports.warn = async function (
   client,
   message,
@@ -199,7 +200,9 @@ module.exports.warn = async function (
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
       const charactersLength = characters.length
       for (let i = 0; i < 6; i++) {
-        ticket += characters.charAt(Math.floor(Math.random() * charactersLength))
+        ticket += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        )
       }
       const warning = {
         author,
