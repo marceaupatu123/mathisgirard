@@ -18,3 +18,11 @@ Cool ! Je suis content de votre enthousiasme 😀. Si vous voulez proposer une i
 
 Wow ! Un autre dev UwU ! Tu peux fork le repository, faire une issue et un pull request sans problème ! N'oublie pas de bien respecter la syntaxe ESlint.
 
+## Mais pourquoi tu as mis ce bot en opensource ?
+
+J'ai longuement hésité à le mettre opensource mais j'ai trouvé plus sympa qu'on puisse y contribuer.
+
+## Je peux te voler le code et te retirer des crédits ?
+
+Non, et si tu es comme ça sache que t'as un mental de pourri. Mathis Girard est sous licence [GNU General Public License v3.0](https://github.com/marceaupatu123/mathisgirard/blob/main/LICENSE). Je trouve ça dommage de vouloir abuser de l'opensource.
+
