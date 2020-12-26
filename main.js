@@ -34,16 +34,13 @@ fs.readdir('./commands', (err, files) => {
   })
 })
 /**
-* Cette fonction permet d'avoir un membre par le mention +
-* @param {String} mention Tout ce qui peut permettre d'identifier un membre
-* @param {Discord.Message} [message=false] un message
-* @returns {Discord.GuildMember} Retourne un membre
-*/
+ * Cette fonction permet d'avoir un membre par le mention +
+ * @param {String} mention Tout ce qui peut permettre d'identifier un membre
+ * @param {Discord.Message} [message=false] un message
+ * @returns {Discord.GuildMember} Retourne un membre
+ */
 
-module.exports.getUserFromMention = function (
-  mention,
-  message = false,
-) {
+module.exports.getUserFromMention = function (mention, message = false) {
   if (!mention) return false
   if (mention.startsWith('<@') && mention.endsWith('>')) {
     mention = mention.slice(2, -1)
@@ -66,11 +63,11 @@ module.exports.getUserFromMention = function (
 }
 
 /**
-* Cette fonction permet d'avoir plusieurs membres par le mention+
-* @param {String} mention Tout ce qui peut permettre d'identifier un membre
-* @param {Discord.Message} message un message
-* @returns {Discord.GuildMember[]} Retourne un array de membres
-*/
+ * Cette fonction permet d'avoir plusieurs membres par le mention+
+ * @param {String} mention Tout ce qui peut permettre d'identifier un membre
+ * @param {Discord.Message} message un message
+ * @returns {Array.<Discord.GuildMember>} Retourne un array de membres
+ */
 module.exports.getMoreUsersFromMention = function (mention, message) {
   if (mention.includes(',')) {
     mention = mention.split(',')
@@ -86,10 +83,10 @@ module.exports.getMoreUsersFromMention = function (mention, message) {
   }
 }
 /**
-* Cette fonction permet d'avoir un channel par sa mention
-* @param {String} role Un Channel
-* @returns {Discord.Channel} Retourne un channel
-*/
+ * Cette fonction permet d'avoir un channel par sa mention
+ * @param {String} mention Un Channel
+ * @returns {Discord.Channel} Retourne un channel
+ */
 
 module.exports.getChannelFromMention = function (mention) {
   if (!mention) return false
@@ -102,11 +99,11 @@ module.exports.getChannelFromMention = function (mention) {
 }
 
 /**
-* Cette fonction permet d'avoir tout les membres d'un role spécifique
-* @param {Discord.Role} role Un role
-* @param {Discord.Message} message un message
-* @returns {Discord.GuildMember[]} Retourne un array de membres
-*/
+ * Cette fonction permet d'avoir tout les membres d'un role spécifique
+ * @param {Discord.Role} role Un role
+ * @param {Discord.Message} message un message
+ * @returns {Array.<Discord.GuildMember>} Retourne un array de membres
+ */
 module.exports.getmembersbyroles = function (role, message) {
   if (!role) return false
 
@@ -126,12 +123,12 @@ module.exports.getmembersbyroles = function (role, message) {
 module.exports.usermap = usermap
 
 /**
-* Cette fonction permet de mute quelqu'un
-* @param {Discord.Client} client Un client discord
-* @param {Discord.Message} message un message
-* @param {String} member N'importe quoi qui permet d'identifier un utilisateur
-* @returns {Discord.Role} Retourne le role mute
-*/
+ * Cette fonction permet de mute quelqu'un
+ * @param {Discord.Client} client Un client discord
+ * @param {Discord.Message} message un message
+ * @param {String} member N'importe quoi qui permet d'identifier un utilisateur
+ * @returns {Discord.Role} Retourne le role mute
+ */
 module.exports.mute = async function (client, message, member) {
   let muterole = message.guild.roles.cache.find(
     (role) => role.name === 'muted'
@@ -172,14 +169,14 @@ module.exports.mute = async function (client, message, member) {
   }
 }
 /**
-* Cette fonction permet de warn quelqu'un
-* @param {Discord.Client} client Un client discord
-* @param {Discord.Message} message un message
-* @param {String} qui N'importe quoi qui permet d'identifier un utilisateur
-* @param {String} raison Une raison de warn
-* @param {Discord.GuildMember} author Auteur du warn
-* @returns {Boolean} Retourne si le warn à fonctionné ou pas
-*/
+ * Cette fonction permet de warn quelqu'un
+ * @param {Discord.Client} client Un client discord
+ * @param {Discord.Message} message un message
+ * @param {String} qui N'importe quoi qui permet d'identifier un utilisateur
+ * @param {String} raison Une raison de warn
+ * @param {Discord.Snowflake} [author=message.member.user.id] Auteur du warn
+ * @returns {Boolean} Retourne si le warn à fonctionné ou pas
+ */
 
 module.exports.warn = async function (
   client,
