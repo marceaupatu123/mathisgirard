@@ -1,5 +1,5 @@
 ---
-description: J'ai créé et documenter des fonctions rien que pour toi !
+description: J'ai créé et documenté des fonctions rien que pour toi !
 ---
 
 # Main.js
