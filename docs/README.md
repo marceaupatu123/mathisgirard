@@ -1,9 +1,3 @@
----
-description: >-
-  Mathis Girard est un bot discord qui cherche à rendre vos actions plus
-  pratique !
----
-
 # Introduction
 
 ## Mathis Girard
