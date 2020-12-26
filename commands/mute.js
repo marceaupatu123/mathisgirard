@@ -55,16 +55,14 @@ exports.run = async (client, message, args) => {
     }
     const qui = functiontools.getMoreUsersFromMention(args[0], message)
     if (Array.isArray(qui)) {
-      qui.forEach(async element => {
+      qui.forEach(async (element) => {
         try {
           await functiontools.mute(client, message, element)
-          message.channel
-            .send(`**${element} à été mute 🔇!**`)
-            .then((msg) => {
-              msg.delete({
-                timeout: 5000
-              })
+          message.channel.send(`**${element} à été mute 🔇!**`).then((msg) => {
+            msg.delete({
+              timeout: 5000
             })
+          })
         } catch (error) {
           console.log(error)
         }
@@ -72,20 +70,22 @@ exports.run = async (client, message, args) => {
     } else {
       try {
         await functiontools.mute(client, message, qui)
-        message.channel
-          .send(`**${qui} à été mute 🔇!**`)
-          .then((msg) => {
-            msg.delete({
-              timeout: 5000
-            })
+        message.channel.send(`**${qui} à été mute 🔇!**`).then((msg) => {
+          msg.delete({
+            timeout: 5000
           })
+        })
       } catch (error) {
         console.log(error)
       }
     }
   } else {
     message.channel
-      .send(`**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role "${message.guild.roles.cache.get(tocheck).name}"*`)
+      .send(
+        `**Tu n'as pas la permission de faire ça ! ⛔️** *Tu dois avoir le role "${
+          message.guild.roles.cache.get(tocheck).name
+        }"*`
+      )
       .then((msg) => {
         msg.delete({
           timeout: 5000
