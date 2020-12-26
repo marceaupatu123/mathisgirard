@@ -36,19 +36,15 @@ fs.readdir('./commands', (err, files) => {
 /**
 * Cette fonction permet d'avoir un membre par le mention +
 * @param {String} mention Tout ce qui peut permettre d'identifier un membre
-* @param {Discord.Message} message un message
+* @param {Discord.Message} [message=false] un message
 * @returns {Discord.GuildMember} Retourne un membre
 */
 
 module.exports.getUserFromMention = function (
   mention,
   message = false,
-  all = false
 ) {
   if (!mention) return false
-  if (all) {
-    return message.mentions.members
-  }
   if (mention.startsWith('<@') && mention.endsWith('>')) {
     mention = mention.slice(2, -1)
 
