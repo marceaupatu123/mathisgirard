@@ -31,7 +31,7 @@ Mathis Girard a beaucoup de fonctionnalités, avec **4 catégories principales**
 * 👩‍💼 **Administration**: `setup`
 * 🚓 **Modération**: `clear`, `warn`,`mute`,`unmute`
 * ⭐ **Utile**: `checkwarn`, `report`, `ping`
-* 👑 **La France Libre**: `conseil`
+👑 **La France Libre**: `conseil`
 
 ### Lien utiles
 
