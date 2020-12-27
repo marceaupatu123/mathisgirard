@@ -1,5 +1,3 @@
-# Mathis Girard
-
 ![Mathis Girard](https://i.gyazo.com/525e603ab72bd2cb593215610b6cf612.png)
 
 ## Mathis Girard
@@ -39,4 +37,5 @@ Mathis Girard a beaucoup de fonctionnalités, avec **4 catégories principales**
 
 * [Discord](https://discord.gg/ENqT6hDwYD)
 * [Avis](https://top.gg/bot/598180445422747651)
+* [Documentation](https://marceaupatu123.gitbook.io/mathis-girard)
 
