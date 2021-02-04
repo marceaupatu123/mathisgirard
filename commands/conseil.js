@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
 
   const Discord = require('discord.js')
   const functiontools = require('../main')
-  const type = args[0].toLowerCase()
+  let type = args[0].toLowerCase()
   const qui =
     functiontools.getMoreUsersFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
@@ -43,15 +43,16 @@ exports.run = (client, message, args) => {
         })
       return
     } else if (type !== 'iga') {
-      message.channel
-        .send(
-          '⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **iga** ⚠️ '
-        )
-        .then((msg) => {
-          message.delete({ timeout: 300 })
-          msg.delete({ timeout: 5000 })
-        })
-      return
+      type = 'iga'
+      // message.channel
+      //   .send(
+      //     '⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **iga** ⚠️ '
+      //   )
+      //   .then((msg) => {
+      //     message.delete({ timeout: 300 })
+      //     msg.delete({ timeout: 5000 })
+      //   })
+      // return
     } else if (qui === undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
