@@ -28,7 +28,7 @@ exports.run = (client, message) => {
       {
         name: `Commandes de "${covid.name || 'La France Libre'}"`,
         value:
-          "`Conseil` : **[COMPATIBLE MENTION+]** Permet de faire un mesage à envoyer à une personne ou un channel en tant que membre d'un conseil."
+          "`Conseil` : **[COMPATIBLE MENTION+]** Permet de faire un mesage à envoyer à une personne ou un channel en tant que membre d'un conseil. \n `Event` : **Permet de lock ou delock un salon event**"
       }
     )
 
