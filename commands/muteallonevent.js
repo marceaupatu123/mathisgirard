@@ -10,7 +10,7 @@ exports.run = async (client, message, args) =>  {
   if (!args[0] || !args[1]) {
     return message.channel
       .send(
-        "**⚠️ Vérifier votre commande `muteall [on/off] [nom du salon]` ⚠️** "
+        "**⚠️ Vérifier votre commande `muteallonevent [on/off] [nom du salon]` ⚠️** "
       )
       .then((msg) => {
         message.delete({ timeout: 300 });
@@ -91,7 +91,7 @@ channelid = "809824389183832085"
    if (type === true) {
 channelid = message.channel.guild.channels.cache.get(channelid).members
 channelid.forEach(async element => {
-  await element.edit({mute:false})
+  await element.edit({mute:true})
 });
  return message.channel.send("Tout le monde à été mute🔇").then((msg) => {
   message.delete({ timeout: 300 });
@@ -101,7 +101,7 @@ channelid.forEach(async element => {
     channelid = message.channel.guild.channels.cache.get(channelid).members
     channelid.forEach(async element => {
       await element.edit({mute:false})
-    });
+    })
      return message.channel.send("Les gens sont démutes 🔊").then((msg) => {
       message.delete({ timeout: 300 });
       msg.delete({ timeout: 5000 });
@@ -113,6 +113,6 @@ channelid.forEach(async element => {
   }
 };
 module.exports.help = {
-  name: "muteall",
+  name: "muteallonevent",
   description: "",
 };
