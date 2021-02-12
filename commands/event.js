@@ -23,6 +23,7 @@ exports.run = async (client, message, args) =>  {
   let type = args[0].toLowerCase();
   let salon = args.slice(1).join(' ').toLowerCase();
   let channelid = ""
+  let channelid2 
   // const qui =
   //   functiontools.getMoreUsersFromMention(args[1], message) ||
   //   functiontools.getChannelFromMention(args[1]) ||
@@ -80,7 +81,8 @@ exports.run = async (client, message, args) =>  {
    if (salon.includes("among")) {
 channelid = "809824389183832085"
    } else if (salon.includes("ciné")) {
-    channelid = "807314955564220467"    
+    channelid = "807314955564220467"
+    channelid2 = "809915254694871090" 
    } else {
    return message.channel.send("⚠️ Salon Invalide ! Les salons valides sont : **among us, cinéma**⚠️ ").then((msg) => {
       message.delete({ timeout: 300 });
@@ -93,7 +95,13 @@ channelid = message.channel.guild.channels.cache.get(channelid)
 await channelid.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
   VIEW_CHANNEL: true,
   CONNECT: true
- }, 'Event lancé').catch(() => { message.channel.send("Je n'ai pas la permission de faire ça :(")})
+ }, 'Event lancé')
+if (channelid2) {
+  channelid2 =message.channel.guild.channels.cache.get(channelid2)
+  await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
+    VIEW_CHANNEL: true
+   }, 'Event lancé')
+}
  return message.channel.send("🚪 Le Salon est ouvert pour tous ! ✅ ").then((msg) => {
   message.delete({ timeout: 300 });
   msg.delete({ timeout: 5000 });
@@ -104,6 +112,12 @@ await channelid.createOverwrite(message.channel.guild.roles.cache.get("789430693
       VIEW_CHANNEL: false,
       CONNECT: false
      }, 'Event lancé').catch(() => { message.channel.send("Je n'ai pas la permission de faire ça :(")})
+     channelid2 =message.channel.guild.channels.cache.get(channelid2)
+     if (channelid2) {
+      await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
+        VIEW_CHANNEL: false
+       }, 'Event lancé')
+    }
      return message.channel.send("🚪 Le Salon est fermé pour tous ! ❌").then((msg) => {
       message.delete({ timeout: 300 });
       msg.delete({ timeout: 5000 });
