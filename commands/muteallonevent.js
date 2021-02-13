@@ -81,6 +81,8 @@ exports.run = async (client, message, args) =>  {
 channelid = "809824389183832085"
    } else if (salon.includes("ciné")) {
     channelid = "807314955564220467"    
+   } else if (salon.includes("trol")) {
+    channelid = "810112982532227083"
    } else {
    return message.channel.send("⚠️ Salon Invalide ! Les salons valides sont : **among us, cinéma**⚠️ ").then((msg) => {
       message.delete({ timeout: 300 });
