@@ -87,7 +87,7 @@ channelid = "809824389183832085"
     channelid = "810112982532227083"
     channelid2 = "810113297718181898" 
    } else {
-   return message.channel.send("⚠️ Salon Invalide ! Les salons valides sont : **among us, cinéma**⚠️ ").then((msg) => {
+   return message.channel.send("⚠️ Salon Invalide ! Les salons valides sont : **among us, cinéma, troll**⚠️ ").then((msg) => {
       message.delete({ timeout: 300 });
       msg.delete({ timeout: 5000 });
     });
@@ -100,10 +100,19 @@ await channelid.createOverwrite(message.channel.guild.roles.cache.get("789430693
   CONNECT: true
  }, 'Event lancé')
 if (channelid2) {
-  channelid2 =message.channel.guild.channels.cache.get(channelid2)
-  await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
-    VIEW_CHANNEL: true
-   }, 'Event lancé')
+  if(channelid2 == '810246844273393744') {
+    channelid2 =message.channel.guild.channels.cache.get(channelid2)
+    await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
+      VIEW_CHANNEL: true,
+      SEND_MESSAGES: false
+     }, 'Event lancé')
+  } else {
+    channelid2 =message.channel.guild.channels.cache.get(channelid2)
+    await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
+      VIEW_CHANNEL: true,
+      SEND_MESSAGES: true
+     }, 'Event lancé')
+  }
 }
  return message.channel.send("🚪 Le Salon est ouvert pour tous ! ✅ ").then((msg) => {
   message.delete({ timeout: 300 });
@@ -115,11 +124,21 @@ if (channelid2) {
       VIEW_CHANNEL: false,
       CONNECT: false
      }, 'Event lancé').catch(() => { message.channel.send("Je n'ai pas la permission de faire ça :(")})
-     channelid2 =message.channel.guild.channels.cache.get(channelid2)
+     
      if (channelid2) {
+      channelid2 =message.channel.guild.channels.cache.get(channelid2)
+      if(channelid2 == '810246844273393744') {
+        channelid2 =message.channel.guild.channels.cache.get(channelid2)
+        await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
+          VIEW_CHANNEL: false,
+          SEND_MESSAGES: false
+         }, 'Event lancé')
+      } else {
       await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
-        VIEW_CHANNEL: false
+        VIEW_CHANNEL: false,
+        SEND_MESSAGES: false
        }, 'Event lancé')
+      }
     }
      return message.channel.send("🚪 Le Salon est fermé pour tous ! ❌").then((msg) => {
       message.delete({ timeout: 300 });
