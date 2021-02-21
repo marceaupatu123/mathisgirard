@@ -34,7 +34,7 @@ exports.run = async (client, message, args) =>  {
   const guildavatar = message.guild.iconURL({ format: "png" });
   const author = message.author;
   const logscmpc = message.guild.channels.cache.get("789476900052795392");
-  const animrole = "809860529907826725"
+  const animrole = "809860529907826725" || "810194203484487730"
   const covid =
     client.guilds.cache.get("789429664149274664") || "La France Libre";
 
