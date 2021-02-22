@@ -91,7 +91,7 @@ channelid2 = "810246844273393744"
     channelid = "810478261493825536"
     channelid2 = "810478357468282885" 
    } else {
-   return message.channel.send("⚠️ Salon Invalide ! Les salons valides sont : **among us, cinéma, troll**⚠️ ").then((msg) => {
+   return message.channel.send("⚠️ Salon Invalide ! Les salons valides sont : **among us, cinéma, troll, roblox**⚠️ ").then((msg) => {
       message.delete({ timeout: 300 });
       msg.delete({ timeout: 5000 });
     });
@@ -105,7 +105,7 @@ await channelid.createOverwrite(message.channel.guild.roles.cache.get("789430693
  }, 'Event lancé')
 if (channelid2) {
   if(channelid2 == '810246844273393744') {
-    channelid2 =message.channel.guild.channels.cache.get(channelid2)
+    channelid2 =message.channel.guild.channels.cache.get('810246844273393744')
     await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
       VIEW_CHANNEL: true,
       SEND_MESSAGES: false
@@ -132,7 +132,7 @@ if (channelid2) {
      if (channelid2) {
       channelid2 =message.channel.guild.channels.cache.get(channelid2)
       if(channelid2 == '810246844273393744') {
-        channelid2 =message.channel.guild.channels.cache.get(channelid2)
+        channelid2 =message.channel.guild.channels.cache.get('810246844273393744')
         await channelid2.createOverwrite(message.channel.guild.roles.cache.get("789430693541183518"), {
           VIEW_CHANNEL: false,
           SEND_MESSAGES: false
