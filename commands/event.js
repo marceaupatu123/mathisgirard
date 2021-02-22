@@ -80,6 +80,7 @@ exports.run = async (client, message, args) =>  {
 
    if (salon.includes("among")) {
 channelid = "809824389183832085"
+channelid2 = "810246844273393744" 
    } else if (salon.includes("ciné")) {
     channelid = "807314955564220467"
     channelid2 = "809915254694871090" 
