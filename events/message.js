@@ -63,6 +63,7 @@ module.exports = async (client, message) => {
       })
     }
   }
+  
   if (message.content.startsWith(client.config.prefix)) {
     const args = message.content
       .slice(client.config.prefix.length)

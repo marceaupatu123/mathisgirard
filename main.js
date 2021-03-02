@@ -130,6 +130,7 @@ module.exports.usermap = usermap
  * @returns {Discord.Role} Retourne le role mute
  */
 module.exports.mute = async function (client, message, member) {
+  const veskiSchema = require('./schemas/veski-schema')
   let muterole = message.guild.roles.cache.find(
     (role) => role.name === 'muted'
   )
@@ -158,6 +159,23 @@ module.exports.mute = async function (client, message, member) {
   }
   try {
     await member.roles.add(muterole)
+    await mongo().then(async (mongoose) => {
+        await veskiSchema.findOneAndUpdate(
+          {
+            guildID: message.guild.id,
+            memberID: member.id,
+          },
+          {
+            guildID: message.guild.id,
+            memberID: member.id,
+            mute: true,
+          },
+          {
+            upsert: true,
+          }
+        );
+        mongoose.connection.close();
+    });
     return muterole
   } catch (error) {
     message.channel
@@ -354,6 +372,23 @@ module.exports.banrole = async function (client, message, member) {
   }
   try {
     await member.roles.add(banrole)
+    await mongo().then(async (mongoose) => {
+      await veskiSchema.findOneAndUpdate(
+        {
+          guildID: message.guild.id,
+          memberID: member.id,
+        },
+        {
+          guildID: message.guild.id,
+          memberID: member.id,
+          mute: true,
+        },
+        {
+          upsert: true,
+        }
+      );
+      mongoose.connection.close();
+  });
     return banrole
   } catch (error) {
     message.channel
