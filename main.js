@@ -317,4 +317,51 @@ module.exports.warn = async function (
     return true
   }
 }
+
+/**
+ * Cette fonction permet de banrole quelqu'un
+ * @param {Discord.Client} client Un client discord
+ * @param {Discord.Message} message un message
+ * @param {String} member N'importe quoi qui permet d'identifier un utilisateur
+ * @returns {Discord.Role} Retourne le role ban
+ */
+module.exports.banrole = async function (client, message, member) {
+  let banrole = message.guild.roles.cache.find(
+    (role) => role.name === 'banroled'
+  )
+  if (!banrole) {
+    try {
+      banrole = await message.guild.roles.create({
+        data: { name: 'banroled', permissions: [] }
+      })
+      message.guild.channels.cache.forEach(async (channel) => {
+        await channel.createOverwrite(banrole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        })
+      })
+    } catch (e) {
+      console.log(e)
+      message.channel
+        .send(
+          "**⚠️ Je n'ai pas la permission modifier les salons et/ou de créer des roles. ⚠️** "
+        )
+        .then((msg) => {
+          msg.delete({ timeout: 5000 })
+        })
+      throw e
+    }
+  }
+  try {
+    await member.roles.add(banrole)
+    return banrole
+  } catch (error) {
+    message.channel
+      .send('**Je n\'ai as la permission de de mettre le rôle "banroled" 🤒 !**')
+      .then((msg) => {
+        msg.delete({ timeout: 5000 })
+      })
+    throw error
+  }
+}
 client.login(config.token)
