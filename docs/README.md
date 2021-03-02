@@ -8,7 +8,7 @@ description: >-
 
 ![Mathis Girard](https://i.gyazo.com/525e603ab72bd2cb593215610b6cf612.png)
 
-### Mathis Girard
+## Mathis Girard
 
 [![](https://img.shields.io/discord/606939452425633802.svg?logo=discord&colorB=7289DA)](https://discord.gg/vF2H5TzF6g) [![](https://img.shields.io/badge/discord.js-v12.5.1-blue.svg?logo=npm)](https://discord.js.org/)
 
@@ -20,7 +20,7 @@ N'hésitez pas à ajouter une étoile ⭐ au référentiel pour promouvoir le pr
 
 Vous pouvez [ajouter le bot en cliquant ici](https://discord.com/oauth2/authorize?client_id=598180445422747651&permissions=8&scope=bot)
 
-#### Informations
+### Informations
 
 **Bot complet**
 
@@ -38,10 +38,10 @@ Mathis Girard a beaucoup de fonctionnalités, avec **4 catégories principales**
 
 * 👩‍💼 **Administration**: `setup`
 * 🚓 **Modération**: `clear`, `warn`,`mute`,`unmute`
-* ⭐ **Utile**: `checkwarn`, `report`, `ping`
+* ⭐ **Utile**: `checkwarn`, `report`, `ping,` 
 * 👑 **La France Libre**: `conseil`
 
-#### Lien utiles
+### Lien utiles
 
 * [Discord](https://discord.gg/ENqT6hDwYD)
 * [Avis](https://top.gg/bot/598180445422747651)

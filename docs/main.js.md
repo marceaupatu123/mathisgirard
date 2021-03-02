@@ -95,3 +95,15 @@ Cette fonction permet de mute quelqu'un
 
  Returns: [Boolean](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Boolean)
 
+### .banrole\(client, message, member\)
+
+Cette fonction permet de banrole quelqu'un
+
+| Paramètre | Type | Optionnel | Description |
+| :--- | :--- | :--- | :--- |
+| client | [Client](https://discord.js.org/#/docs/main/stable/class/Client) | ❌ | Un client discord |
+| message | [Message](https://discord.js.org/#/docs/main/stable/class/Message) | ❌ | Un message  |
+| member | [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String) | ❌ | N'importe quoi qui permet d'identifier un utilisateur |
+
+ Returns: [Role](https://discord.js.org/#/docs/main/stable/class/Role)
+
