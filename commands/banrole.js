@@ -1,3 +1,4 @@
+// Up moi ce bot
 const mongo = require('../mongo')
 const modoschema = require('../schemas/ban-roles-schema')
 const functiontools = require('../main')
