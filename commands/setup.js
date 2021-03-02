@@ -1,6 +1,7 @@
 const mongo = require('../mongo')
 const schemareports = require('../schemas/reports-channel-schema')
 const modoschema = require('../schemas/warn-roles-schema')
+const banschema = require('../schemas/ban-roles-schema')
 const muteschema = require('../schemas/mute-roles-schema')
 const mutedb = require('../json/mute.json')
 const fs = require('fs')
@@ -125,7 +126,43 @@ exports.run = async (client, message, args) => {
         mongoose.connection.close()
       }
     })
-  } else if (type === 'antispam') {
+  } else if (type === 'banrole') {
+    let role
+    try {
+      role = message.mentions.roles.first().id
+    } catch (error) {
+      role = undefined
+    }
+    // Check Channel
+    if (role === undefined) {
+      return message.channel.send('**⚠️ Role Introuvable ⚠️** ').then((msg) => {
+        message.delete({ timeout: 300 })
+        msg.delete({ timeout: 5000 })
+      })
+    }
+    await mongo().then(async (mongoose) => {
+      try {
+        await banschema.findOneAndUpdate(
+          { _id: message.guild.id },
+          { _id: message.guild.id, rolemodo: role },
+          { upsert: true }
+        )
+        message.channel
+          .send('**Le setup du role qui peut ban a été fait avec succès ✅** ')
+          .then((msg) => {
+            message.delete({ timeout: 300 })
+            msg.delete({ timeout: 5000 })
+          })
+      } catch (error) {
+        message.channel.send(`**ERROR : ${error}** `).then((msg) => {
+          message.delete({ timeout: 300 })
+          msg.delete({ timeout: 5000 })
+        })
+      } finally {
+        mongoose.connection.close()
+      }
+    })
+  }else if (type === 'antispam') {
     let tocheck = true
     if (mutedb[message.channel.guild.id] === undefined) {
       mutedb[message.channel.guild.id] = {
