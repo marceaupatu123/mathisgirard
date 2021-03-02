@@ -57,7 +57,7 @@ exports.run = async (client, message, args) => {
     if (Array.isArray(qui)) {
       qui.forEach(async (element) => {
         try {
-          await functiontools.mute(client, message, element)
+          await functiontools.banrole(client, message, element)
           message.channel.send(`**${element} à été ban 🔨!**`).then((msg) => {
             msg.delete({
               timeout: 5000
@@ -69,7 +69,7 @@ exports.run = async (client, message, args) => {
       })
     } else {
       try {
-        await functiontools.mute(client, message, qui)
+        await functiontools.banrole(client, message, qui)
         message.channel.send(`**${qui} à été ban 🔨!**`).then((msg) => {
           msg.delete({
             timeout: 5000
@@ -96,5 +96,5 @@ exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'mute'
+  name: 'banrole'
 }
