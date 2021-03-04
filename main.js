@@ -382,7 +382,7 @@ module.exports.banrole = async function (client, message, member) {
         {
           guildID: message.guild.id,
           memberID: member.id,
-          mute: true,
+          ban: true,
         },
         {
           upsert: true,
