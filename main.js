@@ -344,6 +344,7 @@ module.exports.warn = async function (
  * @returns {Discord.Role} Retourne le role ban
  */
 module.exports.banrole = async function (client, message, member) {
+  const veskiSchema = require('./schemas/veski-schema')
   let banrole = message.guild.roles.cache.find(
     (role) => role.name === 'banroled'
   )

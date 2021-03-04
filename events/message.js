@@ -5,14 +5,14 @@ const mutedb = require('../json/mute.json')
 module.exports = async (client, message) => {
   if (message.author.bot) return
 
-  const tocheck = !mutedb[message.channel.guild.id]
+  const tocheck = !mutedb[message.channel.guild.id] || true
     ? true
     : mutedb[message.channel.guild.id].status
 
   if (tocheck) {
-    const LIMIT = 3
-    const TIME = 3000
-    const DIFF = 3000
+    const LIMIT = 6
+    const TIME = 6000
+    const DIFF = 6000
     if (usermap.has(message.author.id)) {
       const userData = usermap.get(message.author.id)
       const { lastMessage, timer } = userData

@@ -40,10 +40,10 @@ exports.run = async (client, message, args) => {
       })
   }
   // Check type
-  if (type !== 'report' && type !== 'warnrole' && type !== 'antispam' && type !== 'muterole') {
+  if (type !== 'report' && type !== 'warnrole' && type !== 'antispam' && type !== 'muterole' && type !== 'banrole') {
     return message.channel
       .send(
-        '**⚠️ Configuration Incorrecte, config dispo: `report, warnrole, antispam, muterole`⚠️** '
+        '**⚠️ Configuration Incorrecte, config dispo: `report, warnrole, antispam, muterole, banrole`⚠️** '
       )
       .then((msg) => {
         message.delete({ timeout: 300 })
