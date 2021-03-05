@@ -30,6 +30,7 @@ module.exports = async (client, message) => {
       } else {
         ++msgCount
         if (parseInt(msgCount) === LIMIT) {
+          if (!message.channel.name.includes('bot') && message.channel.type == 'text') {
           // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
           message.reply(`Vous avez été mute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
@@ -64,6 +65,7 @@ module.exports = async (client, message) => {
               console.log(err)
             }
           }, 300000)
+        }
         } else {
           userData.msgCount = msgCount
           usermap.set(message.author.id, userData)
