@@ -76,10 +76,7 @@ exports.run = async (client, message, args) => {
           // )
           .setTimestamp()
 
-        message.channel.send({ embed }).then((msg) => {
           message.delete({ timeout: 300 })
-          msg.delete({ timeout: 10000 })
-        })
       } catch (err) {
         tocheck = false
       } finally {

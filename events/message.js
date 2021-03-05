@@ -40,6 +40,23 @@ module.exports = async (client, message) => {
           setTimeout(async () => {
             try {
               message.member.roles.remove(muterole)
+              await mongo().then(async (mongoose) => {
+                await veskiSchema.findOneAndUpdate(
+                  {
+                    guildID: message.guild.id,
+                    memberID: member.id,
+                  },
+                  {
+                    guildID: message.guild.id,
+                    memberID: member.id,
+                    mute: false,
+                  },
+                  {
+                    upsert: true,
+                  }
+                );
+                mongoose.connection.close();
+            });
               message.reply(`Vous avez été démute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
                 msg.delete({ timeout: 5000 })
               })
