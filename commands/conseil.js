@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
 
   const Discord = require('discord.js')
   const functiontools = require('../main')
-  let type = args[0].toLowerCase()
+  let type = "iga"
   const qui =
     functiontools.getMoreUsersFromMention(args[1], message) ||
     functiontools.getChannelFromMention(args[1]) ||
@@ -42,17 +42,6 @@ exports.run = (client, message, args) => {
           msg.delete({ timeout: 5000 })
         })
       return
-    } else if (type !== 'iga') {
-      type = 'iga'
-      // message.channel
-      //   .send(
-      //     '⚠️ Type de conseil invalide, ceux qui sont disponibles sont : **iga** ⚠️ '
-      //   )
-      //   .then((msg) => {
-      //     message.delete({ timeout: 300 })
-      //     msg.delete({ timeout: 5000 })
-      //   })
-      // return
     } else if (qui === undefined) {
       message.channel
         .send("**⚠️ Je ne trouve pas l'utilisateur ou le salon ⚠️**")
@@ -92,8 +81,8 @@ exports.run = (client, message, args) => {
       const embed = new Discord.MessageEmbed()
         .setTitle(`Lettre de ${author.username}`)
         .setAuthor(
-          'Inspection générale des armées',
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Emblem_of_the_Inspectorate_General_of_the_French_Armed_Forces.png/390px-Emblem_of_the_Inspectorate_General_of_the_French_Armed_Forces.png'
+          'Le Conseil de Kochab',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Solar_prominence_from_STEREO_spacecraft_September_29%2C_2008.jpg/220px-Solar_prominence_from_STEREO_spacecraft_September_29%2C_2008.jpg'
         )
         .setColor('ORANGE')
         .setDescription(phrase)

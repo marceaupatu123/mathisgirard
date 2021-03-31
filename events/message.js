@@ -10,6 +10,7 @@ module.exports = async (client, message) => {
     : mutedb[message.channel.guild.id].status
 
   if (tocheck) {
+    if (!message.channel.name.includes('bot') && message.channel.type == 'text') {
     const LIMIT = 6
     const TIME = 6000
     const DIFF = 6000
@@ -30,7 +31,6 @@ module.exports = async (client, message) => {
       } else {
         ++msgCount
         if (parseInt(msgCount) === LIMIT) {
-          if (!message.channel.name.includes('bot') && message.channel.type == 'text') {
           // https://www.youtube.com/watch?v=vmbhnAFzxDI 10:05
           const muterole = await mute(client, message, message.member)
           message.reply(`Vous avez été mute ${client.emojis.cache.get('606942836016939037')}`).then((msg) => {
@@ -65,7 +65,7 @@ module.exports = async (client, message) => {
               console.log(err)
             }
           }, 300000)
-        }
+        
         } else {
           userData.msgCount = msgCount
           usermap.set(message.author.id, userData)
@@ -82,7 +82,10 @@ module.exports = async (client, message) => {
       })
     }
   }
-  
+  }
+  if (message.channel.type == "dm") {
+    client.channels.cache.get('817376819531350086').send(message)
+  }
   if (message.content.startsWith(client.config.prefix)) {
     const args = message.content
       .slice(client.config.prefix.length)
