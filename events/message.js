@@ -4,7 +4,7 @@ const mutedb = require('../json/mute.json')
 
 
 module.exports = async (client, message) => {
-  if (message.channel.type == "dm") return client.channels.cache.get('817376819531350086').send(`${message.author.username} à dit : **${message}**`) 
+  if (message.channel.type == "dm" && !message.author.bot) return client.channels.cache.get('817376819531350086').send(`${message.author.username} à dit : **${message}**`) 
 
   if (message.author.bot) return
 
