@@ -2,7 +2,10 @@ const { usermap, mute } = require('../main')
 const functiontools = require('../main.js')
 const mutedb = require('../json/mute.json')
 
+
 module.exports = async (client, message) => {
+  if (message.channel.type == "dm") return client.channels.cache.get('817376819531350086').send(`${message.author.username} à dit : **${message}**`) 
+
   if (message.author.bot) return
 
   const tocheck = !mutedb[message.channel.guild.id] || true
@@ -83,9 +86,7 @@ module.exports = async (client, message) => {
     }
   }
   }
-  if (message.channel.type == "dm") {
-    client.channels.cache.get('817376819531350086').send(message)
-  }
+
   if (message.content.startsWith(client.config.prefix)) {
     const args = message.content
       .slice(client.config.prefix.length)
