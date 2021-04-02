@@ -262,9 +262,6 @@ module.exports.warn = async function (
           'Veillez à ne pas être trop averti',
           'https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png'
         )
-        .setImage(
-          'https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1'
-        )
         .setTimestamp()
 
       element.send(embed)
@@ -325,9 +322,6 @@ module.exports.warn = async function (
       .setFooter(
         'Veillez à ne pas être trop averti',
         'https://i.gyazo.com/760fd534c0513e6f336817c759afa005.png'
-      )
-      .setImage(
-        'https://i0.wp.com/northmantrader.com/wp-content/uploads/2020/02/WARNING.gif?ssl=1'
       )
       .setTimestamp()
 
